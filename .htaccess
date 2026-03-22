@@ -7,6 +7,9 @@ Options -MultiViews +FollowSymlinks -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    RewriteRule ^inc/(config\.php|settings\.php)$ - [F,L]
+    RewriteRule ^inc/ - [F,L]
+    RewriteRule ^install/resources/ - [F,L]
     RewriteRule ^forum-([0-9]+)\.html$ forumdisplay.php?fid=$1 [L,QSA]
     RewriteRule ^forum-([0-9]+)-page-([0-9]+)\.html$ forumdisplay.php?fid=$1&page=$2 [L,QSA]
     RewriteRule ^thread-([0-9]+)\.html$ showthread.php?tid=$1 [L,QSA]
@@ -28,6 +31,13 @@ Options -MultiViews +FollowSymlinks -Indexes
     <IfModule mod_env.c>
         SetEnv SEO_SUPPORT 1
     </IfModule>
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
 
 <IfModule mod_deflate.c>

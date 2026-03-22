@@ -309,7 +309,7 @@ class MyBB {
 		}
 
 		// Are we running in debug mode?
-		if(isset($this->input['debug']) && $this->input['debug'] == 1)
+		if(getenv('MYBB_ENABLE_DEBUG') == '1' && isset($this->input['debug']) && $this->input['debug'] == 1)
 		{
 			$this->debug_mode = true;
 		}

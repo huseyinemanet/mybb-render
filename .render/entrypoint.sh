@@ -7,6 +7,11 @@ sed -i "s/Listen 80/Listen ${PORT_VALUE}/" /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \\*:80>/<VirtualHost *:${PORT_VALUE}>/" /etc/apache2/sites-available/000-default.conf
 sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
+ADMIN_DIR_VALUE="${MYBB_ADMIN_DIR:-admin}"
+BASIC_AUTH_USER="${MYBB_ADMIN_BASIC_AUTH_USER:-}"
+BASIC_AUTH_PASS="${MYBB_ADMIN_BASIC_AUTH_PASS:-}"
+HTPASSWD_PATH="/var/www/.htpasswd-mybb-acp"
+
 if [ ! -f /var/www/html/inc/config.php ]; then
   cp /var/www/html/.render/config.php.tpl /var/www/html/inc/config.php
 fi
@@ -99,6 +104,17 @@ fi
 
 if [ "$settings_written" != "1" ] && [ ! -f /var/www/html/inc/settings.php ]; then
   cp /var/www/html/.render/settings.php.tpl /var/www/html/inc/settings.php
+fi
+
+if [ -n "$BASIC_AUTH_USER" ] && [ -n "$BASIC_AUTH_PASS" ] && [ -d "/var/www/html/${ADMIN_DIR_VALUE}" ]; then
+  htpasswd -bc "$HTPASSWD_PATH" "$BASIC_AUTH_USER" "$BASIC_AUTH_PASS" >/dev/null 2>&1
+  cat >"/var/www/html/${ADMIN_DIR_VALUE}/.htaccess" <<EOF
+AuthUserFile ${HTPASSWD_PATH}
+AuthGroupFile /dev/null
+AuthName Restricted
+AuthType Basic
+require valid-user
+EOF
 fi
 
 db_ready="0"

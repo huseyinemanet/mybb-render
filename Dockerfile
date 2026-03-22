@@ -2,6 +2,7 @@ FROM php:8.5-apache
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        apache2-utils \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libonig-dev \
@@ -12,7 +13,7 @@ RUN apt-get update \
         unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j"$(nproc)" gd mbstring mysqli pdo_pgsql pgsql zip \
-    && a2enmod rewrite \
+    && a2enmod headers rewrite auth_basic authn_file \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html

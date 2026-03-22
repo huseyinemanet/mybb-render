@@ -10,6 +10,20 @@ services:
         sync: false
       - key: MYBB_SITE_URL
         sync: false
+      - key: MYBB_ADMIN_DIR
+        sync: false
+      - key: MYBB_HIDE_ADMIN_LINKS
+        sync: false
+      - key: MYBB_SECRET_PIN
+        sync: false
+      - key: MYBB_ADMIN_BASIC_AUTH_USER
+        sync: false
+      - key: MYBB_ADMIN_BASIC_AUTH_PASS
+        sync: false
+      - key: MYBB_SUPER_ADMINS
+        sync: false
+      - key: MYBB_TABLE_PREFIX
+        sync: false
       - key: MYBB_FORUM_NAME
         value: MyBB
       - key: MYBB_SITE_NAME

@@ -28,7 +28,7 @@ if($db_port !== false && $db_port !== '')
  *  new directory.
  */
 
-$config['admin_dir'] = 'admin';
+$config['admin_dir'] = getenv('MYBB_ADMIN_DIR') ?: 'admin';
 
 /**
  * Hide all Admin CP links
@@ -38,7 +38,7 @@ $config['admin_dir'] = 'admin';
  *  to 1.
  */
 
-$config['hide_admin_links'] = 0;
+$config['hide_admin_links'] = (int)(getenv('MYBB_HIDE_ADMIN_LINKS') ?: 0);
 
 /**
  * Data-cache configuration
@@ -85,7 +85,7 @@ $config['redis']['port'] = 6379;
  *  cannot be altered either.
  */
 
-$config['super_admins'] = '1';
+$config['super_admins'] = getenv('MYBB_SUPER_ADMINS') ?: '1';
 
 /**
  * Database Encoding
@@ -151,4 +151,4 @@ $config['disallowed_remote_addresses'] = array(
  * Admin CP Secret PIN
  */
 
-$config['secret_pin'] = '';
+$config['secret_pin'] = getenv('MYBB_SECRET_PIN') ?: '';
