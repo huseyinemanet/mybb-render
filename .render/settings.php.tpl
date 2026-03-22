@@ -6,9 +6,13 @@
 
 $settings = [];
 $settings['adminemail'] = getenv('MYBB_ADMIN_EMAIL') ?: 'admin@localhost';
+$settings['bblanguage'] = getenv('MYBB_BB_LANGUAGE') ?: 'english';
 $settings['bbname'] = getenv('MYBB_FORUM_NAME') ?: 'MyBB';
 $settings['bburl'] = getenv('MYBB_BASE_URL') ?: 'http://127.0.0.1:8000';
+$settings['cplanguage'] = getenv('MYBB_CP_LANGUAGE') ?: ($settings['bblanguage'] ?: 'english');
 $settings['cookiedomain'] = '';
 $settings['cookiepath'] = '/';
+$settings['cookieprefix'] = '';
+$settings['cpstyle'] = '';
 $settings['homename'] = getenv('MYBB_SITE_NAME') ?: 'MyBB';
 $settings['homeurl'] = getenv('MYBB_SITE_URL') ?: (getenv('MYBB_BASE_URL') ?: 'http://127.0.0.1:8000');
