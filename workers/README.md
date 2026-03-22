@@ -27,8 +27,8 @@ pip install -r workers/requirements.txt
 | `MYBB_BASE_URL` | Evet* | Örn. `https://forum.example.com` |
 | `MYBB_PUBLISH_SECRET` | Evet* | `publish_bridge.php` ile aynı |
 | `OPENAI_API_KEY` | LLM için | Varsayılan sağlayıcı OpenAI |
-| `ANTHROPIC_API_KEY` | Alternatif | `LLM_PROVIDER=anthropic` ile |
-| `LLM_PROVIDER` | Hayır | `openai` (varsayılan) veya `anthropic` |
+| `ANTHROPIC_API_KEY` | OpenAI yoksa | Claude; yalnızca bu doluysa otomatik anthropic seçilir |
+| `LLM_PROVIDER` | Hayır | `openai` veya `anthropic` (ikisi de varsa veya belirsizse `openai`) |
 | `MYBB_PUBLISH_UID` | Hayır | Konu yazarı uid (varsayılan 1) |
 | `MAX_PUBLISH_PER_RUN` | Hayır | Varsayılan `1` — kademeli artır |
 | `MAX_CANDIDATES_PLAN` | Hayır | Planlanan aday üst sınırı (varsayılan 25) |

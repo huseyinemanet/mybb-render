@@ -104,8 +104,19 @@ def generate_article_anthropic(user_prompt: str, model: str | None = None) -> di
     return json.loads(text)
 
 
+def resolve_llm_provider() -> str:
+    """Explicit LLM_PROVIDER wins; else Anthropic-only key selects anthropic."""
+    p = os.environ.get("LLM_PROVIDER", "").strip().lower()
+    if p in ("anthropic", "openai"):
+        return p
+    ak = os.environ.get("ANTHROPIC_API_KEY", "").strip()
+    ok = os.environ.get("OPENAI_API_KEY", "").strip()
+    if ak and not ok:
+        return "anthropic"
+    return "openai"
+
+
 def generate_article(user_prompt: str) -> dict[str, Any]:
-    provider = (os.environ.get("LLM_PROVIDER") or "openai").strip().lower()
-    if provider == "anthropic":
+    if resolve_llm_provider() == "anthropic":
         return generate_article_anthropic(user_prompt)
     return generate_article_openai(user_prompt)

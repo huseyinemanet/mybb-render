@@ -21,6 +21,7 @@ import traceback
 from workers.dedupe import DedupeState, filter_planned, load_dedupe_state, resolve_fid
 from workers.discovery import load_candidates
 from workers.generate import generate_for_topic
+from workers.llm_client import resolve_llm_provider
 from workers.planner import plan_topics
 from workers.publish import publish_thread
 from workers.qc import check_topic
@@ -70,6 +71,9 @@ def main() -> int:
     ):
         LOG.error("Set OPENAI_API_KEY or ANTHROPIC_API_KEY (or SKIP_LLM=1 for smoke test)")
         return 2
+
+    if not dry and not skip_llm:
+        LOG.info("llm_provider=%s", resolve_llm_provider())
 
     templates, raw = load_candidates()
     planned = plan_topics(templates, raw, max_candidates=max_pool)
