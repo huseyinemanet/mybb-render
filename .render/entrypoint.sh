@@ -110,7 +110,6 @@ if [ -n "$BASIC_AUTH_USER" ] && [ -n "$BASIC_AUTH_PASS" ] && [ -d "/var/www/html
   htpasswd -bc "$HTPASSWD_PATH" "$BASIC_AUTH_USER" "$BASIC_AUTH_PASS" >/dev/null 2>&1
   cat >"/var/www/html/${ADMIN_DIR_VALUE}/.htaccess" <<EOF
 AuthUserFile ${HTPASSWD_PATH}
-AuthGroupFile /dev/null
 AuthName Restricted
 AuthType Basic
 require valid-user
