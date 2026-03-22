@@ -8,7 +8,7 @@ Zamanlanmış **servis** mantığı: bu kod MyBB Docker imajında çalışmaz (i
 2. **planner** — `forum_slug`, `subject`, `source_topic_key`, `canonical_intent` üretir (`planner.py`).
 3. **dedupe** — İsteğe bağlı PostgreSQL ile `content_meta` / `thread_intent_index` ön filtresi (`dedupe.py`).
 4. **generate** — OpenAI veya Anthropic ile JSON makale → MyBB MyCode (`generate.py`, `llm_client.py`).
-5. **qc** — Kural tabanlı kalite kapısı (`qc.py`).
+5. **qc** — Kural tabanlı kalite kapısı (`qc.py`); `content_type: cheats` için büyük harfli kod satırları (`THUGSTOOLS:` vb.) reddedilir (otomasyonda kod uydurmayı engellemek için).
 6. **publish** — `POST /publish_bridge.php` (`publish.py`).
 
 ## Kurulum
@@ -29,6 +29,8 @@ pip install -r workers/requirements.txt
 | `OPENAI_API_KEY` | LLM için | Varsayılan sağlayıcı OpenAI |
 | `ANTHROPIC_API_KEY` | OpenAI yoksa | Claude; yalnızca bu doluysa otomatik anthropic seçilir |
 | `LLM_PROVIDER` | Hayır | `openai` veya `anthropic` (ikisi de varsa veya belirsizse `openai`) |
+| `OPENAI_MODEL` | Hayır | Varsayılan `gpt-4o-mini` |
+| `ANTHROPIC_MODEL` | Hayır | Varsayılan `claude-sonnet-4-6` (Haiku’dan daha güçlü; maliyet daha yüksek) |
 | `MYBB_PUBLISH_UID` | Hayır | Konu yazarı uid (varsayılan 1) |
 | `MAX_PUBLISH_PER_RUN` | Hayır | Varsayılan `1` — kademeli artır |
 | `MAX_CANDIDATES_PLAN` | Hayır | Planlanan aday üst sınırı (varsayılan 25) |

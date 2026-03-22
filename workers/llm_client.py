@@ -56,7 +56,10 @@ def _system_rules() -> str:
     return """Sen Türkçe yazan bir oyun rehberi editörüsün.
 Kurallar:
 - Sadece tek oyunculu / offline içerik; çok oyunculu hile, exploit, ban riski yok.
-- Kesin yalan veya korsan teşvik etme; sürüm farklarını belirt.
+- Korsan teşvik etme; sürüm ve platform (PC/konsol/mağaza) farklarını açıkça belirt.
+- Doğrulanabilir gerçekleri uydurma: hile kodu, konsol komutu, tam dosya yolu, menü adı, karakter/yer adı,
+  sürüm numarası veya istatistik yazmadan önce emin olmalısın. Emin değilsen genel çerçeve anlat ve
+  okuyucuya güvenilir wiki veya resmî kaynakta doğrulama öner; yanlış kod veya isim riski yüksektir.
 - Çıktı SADECE istenen JSON şemasına uysun; markdown code fence kullanma.
 - İçerik özet ve şablon niteliğinde olsun; kısa ama yapılandırılmış bölümler kullan.
 """
@@ -89,7 +92,7 @@ def generate_article_anthropic(user_prompt: str, model: str | None = None) -> di
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", ""))
-    m = model or _env_model("ANTHROPIC_MODEL", "claude-haiku-4-5")
+    m = model or _env_model("ANTHROPIC_MODEL", "claude-sonnet-4-6")
     schema_str = json.dumps(ARTICLE_JSON_INNER)
     msg = client.messages.create(
         model=m,

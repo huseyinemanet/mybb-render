@@ -8,8 +8,35 @@ from workers.llm_client import generate_article
 from workers.planner import PlannedTopic
 
 
+def _factual_constraints(topic: PlannedTopic) -> str:
+    if topic.content_type == "cheats":
+        return """
+ZORUNLU — HİLE / KOD ŞABLONU (otomatik yayın güvenliği):
+- Tek tek hile kodu, tuş kombinasyonu, konsol komutu veya "KOD: açıklama" satırı YAZMA. Model hafızası kodlarda sık hata yapar.
+- Bunun yerine: kodların yalnızca tek oyunculu modda anlamı; platform ve sürüm (orijinal/yeniden yayın) farkları;
+  kayıt dosyası / başarı etkisi uyarıları; kodları güvenilir bir wiki veya kılavuzda nasıl aratacakları.
+- Bölüm başlıkları genel kalabilir (ör. silah, araç, polis seviyesi) ama içerik somut kod içermesin.
+- Karakter veya yer adı kullanacaksan yalnızca kesin bildiğin doğru isimleri yaz; şüphede "ana karakter" gibi genel anlat.
+- Uyarılar bölümünde mutlaka güvenilir kaynakta doğrulama ve yedek kaydı tavsiyesi olsun.
+"""
+    if topic.content_type in ("guide", "tech"):
+        return """
+ZORUNLU — REHBER / TEKNİK:
+- Tam dosya yolu, kayıt klasörü adı, menü öğesi adı veya kesin sürüm numarası uydurma.
+- "Genellikle", "çoğu kurulumda", "Windows'ta sık görülen" gibi çerçeve kullan; okuyucuya kendi sürümünde doğrulamasını söyle.
+"""
+    if topic.content_type == "list":
+        return """
+ZORUNLU — LİSTE:
+- Oyun adı ve tür iddialarını abartma; emin olmadığın yapımı ekleme. Liste maddeleri kısa ve tarafsız olsun.
+"""
+    return """
+Genel: Ölçülebilir teknik iddia (yol, kod, istatistik) uydurma; emin değilsen çerçeve + doğrulama öner.
+"""
+
+
 def build_user_prompt(topic: PlannedTopic) -> str:
-    return f"""Aşağıdaki konu için forum gönderisi üret.
+    core = f"""Aşağıdaki konu için forum gönderisi üret.
 
 Oyun: {topic.game}
 İçerik tipi: {topic.content_type}
@@ -26,6 +53,7 @@ JSON alanları:
 
 Metinde şunları yapma: çok oyunculu hile, cheat engine ile online, korsan bağlantı, politika ihlali.
 """
+    return core + _factual_constraints(topic)
 
 
 def article_to_mycode(data: dict[str, Any]) -> str:

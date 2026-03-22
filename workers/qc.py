@@ -15,6 +15,10 @@ class QCResult:
     reason: str
 
 
+# Büyük harfli uzun anahtar + iki nokta (GTA tarzı hile satırları) — cheats şablonunda yasak
+_CHEAT_CODEISH = re.compile(r"\b[A-Z]{8,}\s*:")
+
+
 _BANNED_SUBSTR = [
     "online hile",
     "multiplayer cheat",
@@ -67,5 +71,11 @@ def check_topic(
 
     if _max_repeat_sentence_ratio(body) > 0.45:
         return QCResult(False, "too many repeated sentences")
+
+    if topic.content_type == "cheats" and _CHEAT_CODEISH.search(body):
+        return QCResult(
+            False,
+            "cheats: literal cheat-key lines (ALLCAPS:…) blocked; use meta-only guide per prompt",
+        )
 
     return QCResult(True, "ok")
