@@ -117,51 +117,9 @@ require valid-user
 EOF
 fi
 
-db_ready="0"
-if [ "${MYBB_DB_TYPE:-pgsql}" = "pgsql" ] && [ -n "${MYBB_DB_HOST:-}" ] && [ -n "${MYBB_DB_NAME:-}" ] && [ -n "${MYBB_DB_USER:-}" ]; then
-  db_ready="$(
-    php <<'PHP'
-<?php
-$host = getenv('MYBB_DB_HOST') ?: '';
-$port = getenv('MYBB_DB_PORT') ?: '5432';
-$name = getenv('MYBB_DB_NAME') ?: '';
-$user = getenv('MYBB_DB_USER') ?: '';
-$pass = getenv('MYBB_DB_PASSWORD') ?: '';
-$prefix = getenv('MYBB_TABLE_PREFIX') ?: 'mybb_';
-
-if ($host === '' || $name === '' || $user === '') {
-    echo '0';
-    exit;
-}
-
-try {
-    $pdo = new PDO(
-        sprintf('pgsql:host=%s;port=%s;dbname=%s', $host, $port, $name),
-        $user,
-        $pass,
-        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-    );
-    $stmt = $pdo->prepare(
-        "SELECT EXISTS (
-            SELECT 1
-            FROM information_schema.tables
-            WHERE table_schema = 'public' AND table_name = :table_name
-        )"
-    );
-    $stmt->execute(array('table_name' => $prefix . 'datacache'));
-    echo $stmt->fetchColumn() ? '1' : '0';
-} catch (Throwable $e) {
-    echo '0';
-}
-PHP
-  )"
-fi
-
-if [ "$db_ready" = "1" ]; then
-  : > /var/www/html/install/lock
-else
-  rm -f /var/www/html/install/lock
-fi
+# This deployment is always expected to run as an already-installed board.
+# Keep the installer locked even if a startup DB check is temporarily unavailable.
+: > /var/www/html/install/lock
 
 mkdir -p /var/www/html/cache/themes /var/www/html/uploads/avatars
 chown -R www-data:www-data /var/www/html/cache /var/www/html/uploads /var/www/html/inc
