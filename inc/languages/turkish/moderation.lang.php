@@ -1,0 +1,233 @@
+<?php
+/**
+ * MyBB 1.8 Turkish Language Pack
+ * Copyright 2014 MyBB Group, All Rights Reserved
+ *
+ * MyBB 1.8 Türkçe Dil Dosyası Paketi
+ *  
+ * Website: https://mybbturkce.com  
+ *  
+ * Son Güncelleme: 23.08.2018 - Saat: 15:10
+ */
+
+$l['nav_deletethread'] = "Konuyu kalıcı olarak sil.";
+$l['nav_deletepoll'] = "Anketi Sil";
+$l['nav_deleteposts'] = "Seçilen Yorumları Sil";
+$l['nav_mergeposts'] = "Seçilen Yorumları Birleştir";
+$l['nav_move'] = "Konuyu Taşı veya Kopyala";
+$l['nav_threadnotes'] = "Moderatör Kayıtları ve Konu Notları";
+$l['nav_getip'] = "Konu/Yorum IP Adres Bilgileri";
+$l['nav_getpmip'] = "ÖM IP Adres Bilgileri";
+$l['nav_pms'] = "Özel Mesajlar";
+$l['nav_merge'] = "Konuları Birleştir";
+$l['nav_split'] = "Konuları Ayır";
+$l['nav_multi_deletethreads'] = "Satıriçi Konu Silme";
+$l['nav_multi_deleteposts'] = "Satıriçi Yorum Silme";
+$l['nav_multi_splitposts'] = "Seçilen Yorumları Ayrıştır";
+$l['nav_multi_moveposts'] = "Seçilen Yorumları Taşı";
+$l['nav_multi_mergeposts'] = "Seçilen Yorumları Birleştir";
+$l['nav_multi_movethreads'] = "Konuları Taşı / Kopyala";
+
+$l['no_mod_options'] = "Bu konuda henüz herhangi bir moderasyon işlemi gerçekleştirilmemiştir.";
+$l['no_delayed_mods'] = "Moderasyon işlemlerinin seçilen konu-lar üzerinde yapılması bekleniyor.";
+$l['delete_poll'] = "Anketi Sil";
+$l['delete_posts'] = "Yorumları Sil";
+$l['delete_selected_posts'] = "Seçilen Yorumları Sil";
+$l['posted_by'] = "Gönderen";
+$l['delete_thread'] = "Konuyu Sil";
+$l['get_post_ip'] = "Konu/Yorum IP Adresi Sorgulama";
+$l['get_pm_ip'] = "ÖM IP Adresi Sorgulama";
+$l['info_on_ip'] = "Bu IP Adresine Ait Host Bilgilerini Göster";
+$l['ip_address'] = "IP Adresi:";
+$l['hostname'] = "Host Adı:";
+$l['if_resolvable'] = "(Çözülebiliyorsa eğer gösterilir)";
+$l['mod_options'] = "Moderatör Araçları:";
+$l['search_ip_users'] = "Bu IP Adresiyle Kayıt Olan Kullanıcıları Bul";
+$l['search_ip_posts'] = "Bu IP Adresiyle Gönderilen Konu & Yorumları Bul";
+$l['merge_threads'] = "Konuları Birleştir";
+$l['new_subject'] = "Yeni Konu Başlığı:";
+$l['thread_to_merge_with'] = "Birleştirilecek Konu URL'si:";
+$l['merge_with_note'] = "Bu konu ile birleştirilecek olan konunun URL adresini üsteki kutucuğun içine yazınız.<br />Bu işlemden sonra ana konu silinip, ona ait olan yorumlar bu konu ile birleştirilecektir.";
+$l['merge_posts'] = "Yorumları Birleştir";
+$l['merge_posts_note'] = "Seçmiş olduğunuz tüm yorumlar, ilk yorum/mesaj ile birleştirilecektir.";
+$l['move_copy_thread'] = "Konuyu Kopyala/Taşı";
+$l['new_forum'] = "Yeni Forum:";
+$l['method'] = "Alternatifler";
+$l['method_move'] = "Konuyu Taşı";
+$l['method_move_redirect'] = "Konuyu taşı ve okunabilmesi için yönlendirmesini bir kaç günlüğüne bu forumda bırak. Gün Giriniz:";
+$l['redirect_expire_note'] = "('Sınırsız' olması için boş bırakın)";
+$l['method_copy'] = "Konuyu Yeni Foruma Kopyala";
+$l['split_thread_subject'] = "[Split]";
+$l['split_thread'] = "Konuyu Ayrıştır";
+$l['move_posts'] = "Yorumları Taşı";
+$l['thread_to_move_to'] = "Taşınacak Konunun URL Adresi:";
+$l['move_post_note'] = "Sağdaki metin kutusuna seçilen yorum-(ları) taşıyacağınız konunun URL adresini giriniz.";
+$l['new_thread_info'] = "Yeni Konu Bilgisi";
+$l['posts_to_split'] = "Ayrıştırılacak Yorumlar";
+$l['thread_notes_editor'] = "Konu Notları Editörü";
+$l['below_notes'] = "Aşağıdaki metin editörünü kullanarak bu konu hakkında Not ekleyebilir veya mevcut notları düzenliyebilir/silebilirsiniz. Bu notları sadece yöneticiler görebilir.";
+$l['update_notes'] = "Notları Kaydet/Güncelle";
+$l['mod_logs'] = "Moderatör Kayıtları (Gösterilen Son 20 İşlem)";
+$l['mod_username'] = "Kullanıcı Adı";
+$l['mod_date'] = "Tarih";
+$l['mod_actions'] = "İşlem";
+$l['mod_information'] = "Bilgi";
+$l['read'] = "Oku:";
+$l['thread'] = "Konu:";
+$l['post'] = "Yorum:";
+$l['forum'] = "Forum:";
+$l['confirm_execute_tool'] = "Aracı Çalıştır";
+$l['confirm_execute_tool_desc'] = "Bu, <strong>{1}</strong> aracını çalıştırmak istediğinizden emin misiniz? Bu araç çalıştırılırsa uygulanan işlemleri geri almak mümkün olmayacaktır.";
+$l['delete_threads'] = "Konuları Sil";
+$l['confirm_delete_threads'] = "<img src=\"images/icons/uyari.gif\" style=\"vertical-align: middle;\" alt=\"\" height=\"14\" width=\"14\" /> Seçmiş olduğunuz bu konu veya konuları silmek istediğinize emin misiniz? <br />Eğer bu konuyu silerseniz, konuya yazılmış yorumları ve varsa ek olarak eklenmiş dosyalarıda silmiş olacaksınız ve sildikten sonra bu işlem geri alınamaz.";
+$l['move_threads'] = "Konuları Taşı / Kopyala";
+$l['confirm_delete_posts'] = "<img src=\"images/icons/uyari.gif\" style=\"vertical-align: middle;\" alt=\"\" height=\"14\" width=\"14\" /> Seçmiş olduğunuz bu Yorumu silmek istediğinize emin misiniz?<br />Sildikten sonra bir daha geri alınamaz ve eğer bu konuya ait ilk yorum veya konunun kendisi ise konuda silinecektir.";
+$l['post_separator'] = "Yorum Ayırıcı";
+$l['new_line'] = "Yeni Satır";
+$l['horizontal_rule'] = "Yatay Çizgi";
+$l['resolve_fail'] = "N/A (Çözümlenemedi)";
+$l['time'] = "Zaman:";
+
+$l['opened'] = "Açıldı";
+$l['closed'] = "Kapatıldı";
+$l['stuck'] = "Üstte tutturuldu";
+$l['unstuck'] = "Üstten Kaldırıldı";
+
+// Yeni eklenen dil satırı MyBBTurkce
+$l['error'] = "HATA!";
+
+$l['mod_process'] = "Konu {1}";
+$l['redirects_removed'] = "Konu yönlendirmeleri silindi";
+$l['thread_deleted'] = "Konu Silindi: {1}";
+$l['poll_deleted'] = "Anket Silindi: {1}";
+$l['thread_approved'] = "Konu Onaylandı: {1}";
+$l['thread_unapproved'] = "Konu Onayı Kaldırıldı: {1}";
+$l['thread_restored'] = "Konu Onarıldı: {1}";
+$l['thread_soft_deleted'] = "Konu Gizlendi/Geçici Silindi: {1}";
+$l['deleted_selective_posts'] = "Seçilen Yorumları Sil ({1})";
+$l['merged_selective_posts'] = "Seçilen Yorumları Birleştir";
+$l['split_selective_posts'] = "(TİD: {2}) Konusuna, ayrıştırılmış Yorum-(lar) (PİD: {1})";
+$l['move_selective_posts'] = "(TİD: {2}) Konusuna, taşınmış yorum-(lar) (PİD: {1})";
+$l['removed_subscriptions'] = "Bütün abonelikler iptal edildi";
+$l['thread_moved'] = "Konu Taşındı";
+$l['thread_copied'] = "Konu Kopyalandı";
+$l['thread_merged'] = "Konular Birleştirildi";
+$l['thread_split'] = "Konu Ayrıştırıldı";
+$l['thread_notes_edited'] = "Konu Notları Düzenlendi";
+$l['multi_deleted_threads'] = "Konular Silindi";
+$l['multi_opened_threads'] = "Konular Açıldı";
+$l['multi_closed_threads'] = "Konular Kapatıldı";
+$l['multi_approved_threads'] = "Konular Onaylandı";
+$l['multi_unapproved_threads'] = "Konuların onayı kaldırıldı";
+$l['multi_restored_threads'] = "Konular onarıldı/geri getirildi";
+$l['multi_soft_deleted_threads'] = "Konular gizlendi/geçici silindi";
+$l['multi_approve_posts'] = "Seçilen yorumlar onaylandı";
+$l['multi_unapprove_posts'] = "Seçilen yorumlar onaylanmadı";
+$l['multi_restore_posts'] = "Seçilen yorumlar onarıldı/geri getirildi";
+$l['multi_soft_delete_posts'] = "Seçilen yorumlar gizlendi/geçici silindi";
+$l['multi_stuck_threads'] = "Konular üstte tutturuldu";
+$l['multi_unstuck_threads'] = "Konular üstten kaldırıldı";
+$l['multi_moved_threads'] = "Konular Taşındı / Kopyalandı";
+$l['multi_copied_threads'] = "Konular Kopyalandı";
+$l['custom_tool'] = "Özel Moderatör Araçları: {1}";
+
+$l['delayed_moderation'] = "Bekleyen Moderasyon İşlemi";
+$l['delayed_moderation_desc'] = "Bu kısımdan belirli bir gün için bekleyen bir moderasyon işlemi uygulayabilirsiniz.";
+$l['threads'] = "Konular:";
+$l['threads_selected'] = "Seçilen Konu-lar {1}";
+$l['run_moderation_time'] = "Moderasyon İşlemi Süresi:";
+$l['days'] = "Gün";
+$l['moderation_action'] = "Moderasyon İşlemi Seç:";
+$l['open_close_thread'] = "Konuyu Kapat/Aç";
+$l['remove_redirects'] = "Yönlendirmeleri Kaldır";
+$l['remove_subscriptions'] = "Abonelikleri Kaldır";
+$l['approve_unapprove_thread'] = "Konuyu Onayla/Onayı Kaldır";
+$l['softdelete_restore_thread'] = "Konuyu Gizle/Geçici Sil/Onar";
+$l['stick_unstick_thread'] = "Konuyu Üste Tuttur/Üstten Kaldır";
+$l['save_delayed_moderation'] = "Moderasyon İşlemini Kaydet";
+$l['custom'] = "Özel";
+$l['delayed_mod_queue'] = "Bekleyen Moderasyonlar";
+$l['time_to_perform_action'] = "İşlem Zamanı";
+$l['leave_redirect'] = "Yönlendirmeyi İptal Et:";
+$l['multiple_threads'] = "Çoklu Konular";
+$l['actions'] = "İşlemler";
+$l['cancel'] = "İptal Et";
+$l['leave_redirect_for'] = "Yönlendirmek İçin Bırak:";
+$l['redirect_forever'] = "Sürekli";
+$l['view_notes_for'] = "Görüntülenen Notlar: {1}";
+
+$l['purgespammer'] = "Spam Kullanıcı İşlemleri";
+$l['purgespammer_purge'] = "{1}, Adlı kulanıcıya spam işlemi uygula";
+$l['purgespammer_purge_desc'] = "<strong>Spam işlemi uyguladığınız takdirde;</strong><br />Bu kullanıcıya ait tüm içerikler, (konu ve yorumları, özel mesajları, etkinlikleri, varsa ekli dosyaları, profil bilgileri sıfırlanıp, avatarı, imzası) vb. sistemden tamamen silinecektir.<br />Ayrıca kullanıcının hesabı, <strong>{1}</strong>";
+$l['purgespammer_ban'] = "Süresiz Olarak Yasaklanacaktır!";
+$l['purgespammer_delete'] = "Kullanıcıyı Sil";
+$l['purgespammer_submit'] = "Spam İşlemlerini Uygula";
+$l['purgespammer_success'] = "Seçilen işlemler başarılı olarak uygulandı.";
+$l['purgespammer_invalid_user'] = "Geçersiz bir kullanıcı belirttiniz.";
+$l['purgespammer_modlog'] = "{1}, Adlı kullanıcı için Spam işlemleri uygulandı.";
+
+$l['error_invalidpm'] = "Geçersiz ÖM (özel mesaj)";
+$l['error_nomergeposts'] = "Yorumları birleştirebilmek için, birleştirmek istediğiniz konu içinde 2 veya daha fazla yorum seçmeniz gerekiyor.";
+$l['error_cantsplitonepost'] = "Sadece 1 adet yorumu olan konuyu ayrıştırma işlemi yapamazsınız.";
+$l['error_badmergeurl'] = "Birleştimek istediğiniz konu için belirtmiş olduğunuz URL geçersiz yada mevcut değil.<br />Lütfen, geri dönüp birleştirmek istediğiniz konunun tam URL'sini metin kutusuna tekrar yapıştırın.";
+$l['error_badmovepostsurl'] = "Taşımak istediğiniz yorum için belirtmiş olduğunuz konu URL'si geçersiz yada mevcut değil.<br />Lütfen, geri dönüp taşımak istediğiniz konunun tam URL'sini metin Kutusuna tekrar yapıştırın.";
+$l['error_inline_nothreadsselected'] = "Üzgünüz, ''Moderasyon İşlemi'' için herhangi bir konu seçmediniz yada işlem sayfası zaman aşımına uğramış olabilir. Lütfen, bir konu seçip tekrar deneyiniz.";
+$l['error_inline_nopostsselected'] = "Üzgünüz, ''Moderasyon İşlemi'' için herhangi bir yorum seçmediniz yada işlem sayfası zaman aşımına uğramış olabilir. Lütfen, bir yorum seçip tekrar deneyiniz.";
+$l['error_movetocategory'] = "Kategori içine şu anda bir konu taşınıyor. Lütfen, moderasyon işlemi yapabilmek için bir forum seçiniz.";
+$l['error_cantsplitall'] = "Bu konudaki tüm yorumları ayrıştıramazsınız! Eğer bunu yaparsanız geriye bir şey kalmaz.";
+$l['error_cantmoveall'] = "Bu konudaki tüm yorumları taşıyamazsınız! Eğer bunu yaparsanız geriye bir şey kalmaz.";
+$l['error_nosplitposts'] = "Bu konuyu ayrıştıramazsınız çünkü, konuya ait hiçbir yorum seçmediniz.";
+$l['error_movetosameforum'] = "Konuyu aynı bölüme taşıyamazsınız. Lütfen, konuyu taşımak için farklı bir bölüm seçiniz.";
+$l['error_mergewithself'] = "Konuların birleştirileceği bir URL girmediniz.<br />Lütfen, geri dönüp birleştirme işlemi için bir URL giriniz.";
+$l['error_movetoself'] = "Yorumların taşınacağı bir URL girmediniz.<br />Lütfen, geri dönüp taşıma işlemi için bir URL giriniz.";
+$l['error_movetononmodforum'] = "Bu konuyu, moderatör olmadığınız veya görüntüleme iznine sahip olmadığınız bir foruma taşıyamazsınız.";
+$l['error_delayedmoderation_unsupported_type'] = "Sorry, but you did not select a valid type for this delayed moderation action or you do not have permission to do this action.";
+$l['error_delayedmoderation_unsupported_method'] = "Sorry, but you did not select a valid move method for this delayed moderation action.";
+$l['error_delayedmoderation_invalid_date_day'] = "Sorry, but you did not select a valid delay date day for this delayed moderation action.";
+$l['error_delayedmoderation_invalid_date_month'] = "Sorry, but you did not select a valid delay date month for this delayed moderation action.";
+$l['error_delayedmoderation_invalid_date_year'] = "Sorry, but you did not select a valid delay date year for this delayed moderation action.";
+// Yeni eklenen dil satırı MyBBTurkce
+$l['error_thread_deleted'] = "Hedef konu geçici olarak silinir.Bu eylemi gerçekleştirebilmek için önce konuyu geri getirmelisiniz.";
+
+$l['redirect_pollnotdeleted'] = "Anketi silmek için <strong>\"SİL\"</strong> kutucuğunu işaretlemediniğinizden dolayı silme işleminiz gerçekleşmedi.";
+$l['redirect_polldeleted'] = "Teşekkürler, anket başarılı olarak silinmiştir.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_mergeposts'] = "Seçilen yorumlar başarılı olarak birleştirildi.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_openthread'] = "Teşekkürler, seçmiş olduğunuz konu başarılı olarak açılmıştır.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_closethread'] = "Teşekkürler, seçmiş olduğunuz konu başarılı olarak kapatılmıştır.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_stickthread'] = "Teşekkürler, seçmiş olduğunuz konu başarılı olarak üstte tutturulmuştur.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_unstickthread'] = "Teşekkürler, seçmiş olduğunuz konu başarılı olarak üstten kaldırılmıştır.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_threaddeleted'] = "Teşekkürler, seçmiş olduğunuz konu başarılı olarak silnmiştir. <br />Şimdi forum sayfasına yönlendiriliyorsunuz...";
+$l['redirect_threadmoved'] = "Teşekkürler, seçmiş olduğunuz konu, kopyası alınarak taşınmıştır.<br />Şimdi geri yönlendiriliyorsunuz...";
+$l['redirect_redirectsremoved'] = "Taşınan Konulardaki Yönlendirmeler Kaldırılmıştır.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_threadapproved'] = "Konu Başarılı Olarak Onaylanmıştır.";
+$l['redirect_threadunapproved'] = "Konu Onayı Başarılı Olarak Kaldırılmıştır.";
+$l['redirect_threadrestored'] = "Konu Başarılı Olarak Onarıldı/geri getirildi.";
+$l['redirect_threadsoftdeleted'] = "Konu Başarılı Olarak Gizlendi/Geçici Silindi.";
+$l['redirect_threadsplit'] = "Konu başarılı olarak ayrıştırıldı.<br />Şimdi yeni konuya yönlendiriliyorsunuz...";
+$l['redirect_moveposts'] = "Yorum-(lar) başarılı olarak taşındı.<br />Şimdi yorum-(ları) taşıdığınız konuya yönlendiriliyorsunuz...";
+$l['redirect_threadnotesupdated'] = "Teşekkürler, bu konuya ait tüm notlar başarılı olarak güncellendi.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_threadsmerged'] = "Teşekkürler, belirtmiş olduğunuz konular başarılı olarak birleştirildi.<br />Şimdi yeni konuya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsdeleted'] = "Seçilen konular başarılı olarak silindi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsopened'] = "Seçilen konular başarılı olarak açıldı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsclosed'] = "Seçilen konular başarılı olarak kapatıldı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsstuck'] = "Seçilen konular başarılı olarak Üstte tutturuldu.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsunstuck'] = "Seçilen konular başarılı olarak Üstten kaldırıldı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsmoved'] = "Seçilen konular başarılı olarak taşındı ya da kopyalandı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsapproved'] = "Seçilen konular başarılı olarak onaylandı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsunapproved'] = "Seçilen konuların onayı başarılı olarak kaldırıldı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadsrestored'] = "Seçilen konular başarılı olarak onarıldı/geri getirildi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_threadssoftdeleted'] = "Seçilen konular başarılı olarak gizlendi/geçici silindi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_postsmerged'] = "Seçilen yorumlar başarılı olarak birleştirildi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_postsapproved'] = "Seçilen yorumlar başarılı olarak onaylandı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_postsunapproved'] = "Seçilen yorumların onayı başarılı olarak kaldırıldı.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_postsrestored'] = "Seçilen yorumlar başarılı olarak onarıldı/geri getirildi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_inline_postssoftdeleted'] = "Seçilen yorumlar başarılı olarak gizlendi/geçici silindi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_postsdeleted'] = "Seçilen yorumlar başarılı olarak silindi.<br />Şimdi bir önceki sayfaya geri yönlendiriliyorsunuz...";
+$l['redirect_removed_subscriptions'] = "Bu konudaki tüm abonelikler başarılı olarak kaldırıldı.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_customtool_thread'] = "\"{1}\" Moderasyon aracı başarılı olarak yürütülmüştür.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_customtool_forum'] = "\"{1}\" Moderasyon aracı başarılı olarak yürütülmüştür.<br />Şimdi forum sayfasına yönlendiriliyorsunuz...";
+$l['redirect_customtool_search'] = "\"{1}\" Moderasyon aracı başarılı olarak yürütülmüştür.<br />Şimdi arama sayfasına yönlendiriliyorsunuz...";
+$l['redirect_delayed_moderation_thread'] = "Seçilen moderasyon işlemi kaydedilip {1} günlüğüne ertelendi.<br />Şimdi konuya geri yönlendiriliyorsunuz...";
+$l['redirect_delayed_moderation_forum'] = "Seçilen moderasyon işlemi kaydedilip {1} günlüğüne ertelendi.<br />Şimdi forum sayfasına yönlendiriliyorsunuz...";
+$l['redirect_delayed_moderation_search'] = "Seçilen moderasyon işlemi kaydedilip {1} günlüğüne ertelendi.<br />Şimdi arama sayfasına yönlendiriliyorsunuz...";
+$l['redirect_delayed_moderation_cancelled'] = "Seçilen moderasyon işlemi hareketi iptal edildi.<br />Şimdi moderasyon sayfasına yönelendiriliyorsunuz...";

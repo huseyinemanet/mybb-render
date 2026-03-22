@@ -1,0 +1,6 @@
+.DS_Store
+.git
+.gitignore
+/install/resources/*.bak
+/tmp
+/node_modules

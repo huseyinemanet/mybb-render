@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: mybb-forum
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: MYBB_BASE_URL
+        sync: false
+      - key: MYBB_SITE_URL
+        sync: false
+      - key: MYBB_FORUM_NAME
+        value: MyBB
+      - key: MYBB_SITE_NAME
+        value: MyBB
+      - key: MYBB_ADMIN_EMAIL
+        value: admin@localhost
+      - key: MYBB_DB_TYPE
+        value: pgsql
+      - key: MYBB_DB_HOST
+        fromDatabase:
+          name: mybb-db
+          property: host
+      - key: MYBB_DB_PORT
+        fromDatabase:
+          name: mybb-db
+          property: port
+      - key: MYBB_DB_NAME
+        fromDatabase:
+          name: mybb-db
+          property: database
+      - key: MYBB_DB_USER
+        fromDatabase:
+          name: mybb-db
+          property: user
+      - key: MYBB_DB_PASSWORD
+        fromDatabase:
+          name: mybb-db
+          property: password
+
+databases:
+  - name: mybb-db
+    databaseName: mybb
+    user: mybb
+    plan: free

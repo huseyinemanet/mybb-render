@@ -1,0 +1,57 @@
+<?php
+
+$l['googleseo_plugin_404'] = "404 Sayfaları";
+$l['googleseo_plugin_apply_error'] = "./inc/functions.php dosyasına değişiklikler uygulanamadı. Dosyanın yazılabilir olması gerekiyor. (<b>Chmod: 777</b>)";
+$l['googleseo_plugin_apply_success'] = "./inc/functions.php dosyasına değişiklikler başarı olarak uygulandı.";
+$l['googleseo_plugin_configure'] = "<br />[<a href=\"{1}\" target=\"_blank\">Ayarlar</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">] - [<a href=\"index.php?module=config&amp;action=change&amp;search=google%20seo%20404\" target=\"_blank\">404 Ayarları</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">] - [<a href=\"index.php?module=config&amp;action=change&amp;search=google%20seo%20meta\" target=\"_blank\">Meta Ayarları</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">] - [<a href=\"index.php?module=config&amp;action=change&amp;search=google%20seo%20sitemap\" target=\"_blank\">Sitemap Ayarları</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">] - [<a href=\"index.php?module=config&amp;action=change&amp;search=google%20seo%20url\" target=\"_blank\">URL Ayarları</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">] - [<a href=\"index.php?module=config&amp;action=change&amp;search=google%20seo%20redirect\" target=\"_blank\">Redirect Ayarları</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">]";
+$l['googleseo_plugin_db_error'] = "Google SEO URL veritabanı tablosunda toplam: <span style=\"color: green;\">[{1}]</span> URL girdisi mevcut. Bunun <span style=\"color: green;\">[{2}]</span> tanesi atık/gereksiz ve silinebilir durumda.";
+$l['googleseo_plugin_db_optimize'] = "Google Seo URL Veritabanı Tablosunu optimize etmek için [<a href=\"{1}\">Buraya</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\">] tıklayın.<br /><span style=\"color: maroon;\"><b>Not:</b></span> Google Seo URL veritabanı girdilerini optimize ederek, atık/gereksiz ve silinebilir girdilerden arındırıp, google seo eklentisinin daha sağlıklı ve stabil çalışmasını sağlayabilirsiniz.";
+$l['googleseo_plugin_db_success'] = "Google SEO URL veritabanı tablosunda, <span style=\"color: maroon;\">[{1}]</span> URL girdisi mevcut ve tamamen optimize edilmiş durumda.";
+$l['googleseo_plugin_description'] = "<b>Türkçe Çeviri:</b>&nbsp;<a href=\"https://mybbturkce.com\" target=\"_blank\"><b>MyBBTurkce.Com</b></a><br />Google Seo Plugin hakkında ayrıntılı bilgi için: [<b><a href=\"../inc/plugins/google_seo.html\" target=\"_blank\">Buraya</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>] tıklayın.<br />[<b><a href=\"https://mybbturkce.com/konu-mybb-google-seo-eklentisi-son-surum-v1-8-3.html\" target=\"_blank\">Google Seo Kurulumu - TR</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>] - [<b><a href=\"https://mybbturkce.com/forum-mybb-seo\" target=\"_blank\">Google Seo Destek - TR</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>]<br />Google Arama Motoru Optimizasyonu için Resmi olarak açıklanan Belge: [<b><a href=\"http://www.google.com/webmasters/docs/search-engine-optimization-starter-guide.pdf\" target=\"_blank\">Google Seo Başlangıç Kılavuzu</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>]";
+$l['googleseo_plugin_edit'] = "<span style=\"color: green;\"><b>./inc/functions.php</b> dosyası değişikliklerini</span> ► [<b>{1}</b>]";
+$l['googleseo_plugin_edit_apply'] = "√ Uygula";
+$l['googleseo_plugin_edit_revert'] = "Orjinal haline çevir !";
+$l['googleseo_plugin_error'] = "{1} ◄ <span style=\"color: maroon;\">Şu anda devre dışı !</span>";
+$l['googleseo_plugin_error_plural'] = "{1} ◄ <span style=\"color: maroon;\">Şu anda devre dışılar !</span>";
+$l['googleseo_plugin_htaccess_rewritebase'] = "MyBB - Google Seo Plugin v1.8.3 /.htaccess URL kodları";
+$l['googleseo_plugin_htaccess_search'] = "Altarnetif /.htaccess kodlarını Google Seo URL kodlarının en sonuna ekleyebilirsiniz.";
+$l['googleseo_plugin_htaccess_search_first'] = "./search.php sorunları için geçici URL çözümleri:";
+$l['googleseo_plugin_htaccess_404'] = "Google SEO URL - 404 Sayfaları";
+$l['googleseo_plugin_htaccess_sitemap'] = "Google SEO URL - Sitemap";
+$l['googleseo_plugin_htaccess_forums'] = 'Google SEO URL - Forumlar';
+$l['googleseo_plugin_htaccess_threads'] = "Google SEO URL - Konular";
+$l['googleseo_plugin_htaccess_announcements'] = "Google SEO URL - Duyurular";
+$l['googleseo_plugin_htaccess_users'] = "Google SEO URL - Kullanıcılar";
+$l['googleseo_plugin_htaccess_calendars'] = "Google SEO URL - Takvim/Ajanda";
+$l['googleseo_plugin_htaccess_events'] = "Google SEO URL - Etkinlikler";
+$l['googleseo_plugin_htaccess_conflict'] = "'{1}' ve '{2}' arasında URL şemasında çakışma mevcut.";
+$l['googleseo_plugin_list'] = "{1}, {2}";
+$l['googleseo_plugin_list_final'] = "[<b>{1}</b>] ve [<b>{2}</b>]";
+$l['googleseo_plugin_meta'] = "Metalar";
+$l['googleseo_plugin_mybb_old'] = "MyBB sürümünüz, Google seo eklentisinin bu sürümü ile uyumlu değil. Lütfen MyBB forum sürümünüzü yükseltin.<br />[<b><a href=\"https://mybbturkce.com/forum-mybb-turkce\" target=\"_blank\">MyBB Son Sürüm İndir</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>]";
+$l['googleseo_plugin_no_plugins'] = "<b>Tüm eklentileriniz şu anda devre dışı!</b><br />Admin kp. ► Ayarlar ► <b>Genel Yapılandırma Ayarları</b> bölümünden, eklentileri aktif ediniz.<br />Eklentileri aktif etmediğiniz takdirde Google Seo dahil, diğer tüm eklentileriniz çalışmaz.";
+$l['googleseo_plugin_pl_missing'] = 'Google SEO eklentisinin stabil çalışabilmesi için PluginLibrary eklentisi gerekli.<br />[<b><a href=\"https://mybbturkce.com/konu-mybb-pluginlibrary-eklentisi-onemi-nedir.html\" target=\"_blank\">PluginLibrary Eklentisi İndir</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>]';
+$l['googleseo_plugin_pl_old'] = 'Kullandığınız PluginLibrary eklentisinin sürümünün eski olduğu tespit edildi. Son sürüm güncel, [<b><a href=\"https://mybbturkce.com/konu-mybb-pluginlibrary-eklentisi-onemi-nedir.html\" target=\"_blank\">PluginLibrary Eklentisi İndir</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>]';
+$l['googleseo_plugin_redirect'] = "Yönlendirmeler";
+$l['googleseo_plugin_redirect_warn_bburl'] = "'{1}' Forum adresini ayarlayabilirsiniz. , Şu anda ayarlanmış olarak görünüyor: '{2}'.<br />Yinede emin olmak için kontrol etmenizi öneriyoruz, aksi halde bu durum yanlış yönlendirmelere neden olabilir.";
+$l['googleseo_plugin_redirect_warn_url'] = "Yönlendirmeler etkin, ancak URL'ler devre dışı bırakıldı. Bu şekilde MyBB URL yönlendirmeleri ve MyBB arama motoru dostu URL'leleriniz, (konu-abcde.html) yerine default (showthread.php?tid=2014) gibi olacaktır.<br />Lütfen, URL ayarlarını yapılandırmak için [<b><a href=\"index.php?module=config&amp;action=change&amp;search=google%20seo\">Buraya</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>] tıklayınız.";
+$l['googleseo_plugin_revert_error'] = "./inc/functions.php dosyasındaki değişiklikler geri alınamadı. Lütfen dosyanın yazılabilir olup olmadığını kontrol ediniz. (<b>Chmod: 777</b>)";
+$l['googleseo_plugin_revert_success'] = "./inc/functions.php dosyasındaki değişiklikler başarılı olarak geri alınıp, orjinal haline dönüştürülmüştür..";
+$l['googleseo_plugin_sitemap'] = "Sitemap";
+$l['googleseo_plugin_success'] = "{1} ayarlarınız başarıyla aktif edildi.";
+$l['googleseo_plugin_success_plural'] = "{1} ayarlarınızın tümü başarıyla aktif edildi.";
+$l['googleseo_plugin_uninstall'] = "Google Seo Eklentisini kaldırmak istediğinizden emin misiniz? Yapmış olduğunuz tüm ayarlar ve veritabanı kayıtlarının tümü silinip, SEO URL yönlendirmeleri artık aktif olmayacaktır !";
+$l['googleseo_plugin_uninstall_confirm'] = "Google SEO eklentisini kaldırmak için tıkla.";
+$l['googleseo_plugin_url'] = "URL";
+$l['googleseo_plugin_url_warn_functions'] = "URL ayarlarınızın tam anlamıyla çalışabilmesi için Google seo uyumlu, <b>inc/functions.php<b> dosyasını yüklemeniz gerekiyor. Ayrıntılı bilgi için: [<b><a href=\"../inc/plugins/google_seo.html#google-seo-url\" target=\"_blank\">Belgeyi</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>] inceleyiniz.";
+$l['googleseo_plugin_url_warn_translate'] = "Forumunuzun URL yapısının Türkçe karakter setine çevrilebilmesi için <b>inc/plugins/google_seo/translate.php</b> dosyasını yüklemeniz gerekiyor . Ayrıntılı bilgi için: [<b><a href=\"../inc/plugins/google_seo.html#character-translation\" target=\"_blank\">Belgeyi</a> <img src=\"../images/icons/external_link.png\" height=\"9\" width=\"9\"></b>] inceleyiniz.";
+$l['googleseo_plugin_warn_encoding'] = "'{1}', veritabanınızın <b>'UTF-8'</b> olmadığı tespit edildi. Lütfen forumunuzu UTF-8 formatına dönüştürün. Google Seo eklentisinin stabil çalışabilmesi için forumunuzun UTF-8 formatında olması gerekiyor.";
+$l['googleseo_plugin_warn_errordocument'] = "<b>google_seo_error=404</b> yönlendirme ayarlarını doğru bir şekilde yapılandırıp, <b>./.htaccess</b> dosyasına eklenmesi için verilen kodları uygulayınız.";
+$l['googleseo_plugin_warn_htaccess'] = "<strong>Lütfen aşağıdaki verilen kodları, <b>./.htaccess</b> dosyasına ekleyiniz:</strong>";
+$l['googleseo_plugin_warn_mbstring'] = "Sunucunuzda, <b>mbstring</b> desteğinin olmadığı tespit edildi. Bu özelliğin olmaması URL-lerde <u>UTF-8 türkçe karakter</u> sorunlarına neden olabilir !";
+$l['googleseo_plugin_warn_setting'] = "Google Seo ayar gruplarının eksik olduğu tespit edildi. Lütfen eklentiyi kapatıp yeniden kurmayı deneyin.";
+$l['googleseo_plugin_warn_url_apply'] = "Seo URL-ler pasif durumda ! Aktif etmek için aşağıdaki linkten <b>./inc/functions.php</b> dosyasına değişikleri uygulayınız.";
+$l['googleseo_plugin_warn_url_redirect'] = "Yönlendirmeler etkin fakat, Seo URL-ler pasif durumda ! MyBB default URL-lerin yerine, SEO URL-lerini aktif edebilmek için aşağıdaki linkten <b>./inc/functions.php</b> dosyasına değişiklikleri uygulayınız.";
+$l['googleseo_plugin_warn_url_revert'] = "Lütfen Seo URL ayarlarını aktif edin ya da <b>./inc/functions.php</b> dosyasına uygulanan değişiklikleri geri alın.";
+
+?>

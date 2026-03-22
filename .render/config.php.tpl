@@ -1,0 +1,154 @@
+<?php
+/**
+ * Database configuration
+ *
+ * Please see the MyBB Docs for advanced
+ * database configuration for larger installations
+ * https://docs.mybb.com/
+ */
+
+$config['database']['type'] = getenv('MYBB_DB_TYPE') ?: 'pgsql';
+$config['database']['database'] = getenv('MYBB_DB_NAME') ?: '';
+$config['database']['table_prefix'] = getenv('MYBB_TABLE_PREFIX') ?: 'mybb_';
+
+$config['database']['hostname'] = getenv('MYBB_DB_HOST') ?: '';
+$config['database']['username'] = getenv('MYBB_DB_USER') ?: '';
+$config['database']['password'] = getenv('MYBB_DB_PASSWORD') ?: '';
+$db_port = getenv('MYBB_DB_PORT');
+if($db_port !== false && $db_port !== '')
+{
+	$config['database']['port'] = (int)$db_port;
+}
+
+/**
+ * Admin CP directory
+ *  For security reasons, it is recommended you
+ *  rename your Admin CP directory. You then need
+ *  to adjust the value below to point to the
+ *  new directory.
+ */
+
+$config['admin_dir'] = 'admin';
+
+/**
+ * Hide all Admin CP links
+ *  If you wish to hide all Admin CP links
+ *  on the front end of the board after
+ *  renaming your Admin CP directory, set this
+ *  to 1.
+ */
+
+$config['hide_admin_links'] = 0;
+
+/**
+ * Data-cache configuration
+ *  The data cache is a temporary cache
+ *  of the most commonly accessed data in MyBB.
+ *  By default, the database is used to store this data.
+ *
+ *  If you wish to use the file system (cache/ directory), MemCache (or MemCached), xcache, APC, APCu, eAccelerator or Redis
+ *  you can change the value below to 'files', 'memcache', 'memcached', 'xcache', 'apc', 'apcu', 'eaccelerator' or 'redis' from 'db'.
+ */
+
+$config['cache_store'] = 'db';
+
+/**
+ * Memcache configuration
+ *  If you are using memcache or memcached as your
+ *  data-cache, you need to configure the hostname
+ *  and port of your memcache server below.
+ *
+ * If not using memcache, ignore this section.
+ */
+
+$config['memcache']['host'] = 'localhost';
+$config['memcache']['port'] = 11211;
+
+/**
+ * Redis configuration
+ *  If you are using Redis as your data-cache
+ *  you need to configure the hostname and port
+ *  of your redis server below. If you want
+ *  to connect via unix sockets, use the full
+ *  path to the unix socket as host and leave
+ *  the port setting unconfigured or false.
+ */
+
+$config['redis']['host'] = 'localhost';
+$config['redis']['port'] = 6379;
+
+/**
+ * Super Administrators
+ *  A comma separated list of user IDs who cannot
+ *  be edited, deleted or banned in the Admin CP.
+ *  The administrator permissions for these users
+ *  cannot be altered either.
+ */
+
+$config['super_admins'] = '1';
+
+/**
+ * Database Encoding
+ *  If you wish to set an encoding for MyBB uncomment
+ *  the line below (if it isn't already) and change
+ *  the current value to the mysql charset:
+ *  http://dev.mysql.com/doc/refman/5.1/en/charset-mysql.html
+ */
+
+// $config['database']['encoding'] = '';
+
+/**
+ * Automatic Log Pruning
+ *  The MyBB task system can automatically prune
+ *  various log files created by MyBB.
+ *  To enable this functionality for the logs below, set the
+ *  the number of days before each log should be pruned.
+ *  If you set the value to 0, the logs will not be pruned.
+ */
+
+$config['log_pruning'] = array(
+	'admin_logs' => 365,
+	'mod_logs' => 365,
+	'task_logs' => 30,
+	'mail_logs' => 180,
+	'user_mail_logs' => 180,
+	'promotion_logs' => 180
+);
+
+/**
+ * Disallowed Remote Hosts
+ *  List of hosts the fetch_remote_file() function will not
+ *  perform requests to.
+ *  It is recommended that you enter hosts resolving to the
+ *  forum server here to prevent Server Side Request
+ *  Forgery attacks.
+ */
+
+$config['disallowed_remote_hosts'] = array(
+	'localhost',
+);
+
+/**
+ * Disallowed Remote Addresses
+ *  List of IPv4 addresses the fetch_remote_file() function
+ *  will not perform requests to.
+ *  It is recommended that you enter addresses resolving to
+ *  the forum server here to prevent Server Side Request
+ *  Forgery attacks.
+ *  Removing all values disables resolving hosts in that
+ *  function.
+ */
+
+$config['disallowed_remote_addresses'] = array(
+	'0.0.0.0',
+	'127.0.0.0/8',
+	'10.0.0.0/8',
+	'172.16.0.0/12',
+	'192.168.0.0/16',
+);
+
+/**
+ * Admin CP Secret PIN
+ */
+
+$config['secret_pin'] = '';

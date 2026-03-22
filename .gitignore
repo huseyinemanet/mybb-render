@@ -1,0 +1,12 @@
+.DS_Store
+/inc/config.php
+/inc/settings.php
+/install/lock
+/cache/*
+!/cache/index.html
+!/cache/themes/
+!/cache/themes/index.html
+/uploads/*
+!/uploads/index.html
+!/uploads/avatars/
+!/uploads/avatars/index.html
