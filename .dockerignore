@@ -1,6 +1,8 @@
 .DS_Store
 .git
 .gitignore
+/inc/config.php
+/inc/settings.php
 /install/resources/*.bak
 /tmp
 /node_modules
