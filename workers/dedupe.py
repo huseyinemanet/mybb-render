@@ -5,6 +5,9 @@ from __future__ import annotations
 import os
 import re
 from dataclasses import dataclass
+from typing import Any
+
+import httpx
 
 from workers.planner import PlannedTopic
 
@@ -88,13 +91,39 @@ def load_dedupe_state() -> DedupeState | None:
     return DedupeState(keys, intents, slug_to_fid)
 
 
+def fetch_slug_to_fid_http(base_url: str, secret: str) -> dict[str, int]:
+    """
+    GET forum_map_bridge.php (same auth as publish_bridge).
+    Used when DATABASE_URL is not available (e.g. GitHub Actions).
+    """
+    url = base_url.rstrip("/") + "/forum_map_bridge.php"
+    headers = {"X-MyBB-Publish-Secret": secret}
+    try:
+        with httpx.Client(timeout=45.0) as client:
+            r = client.get(url, headers=headers)
+        data: dict[str, Any] = r.json()
+    except Exception:
+        return {}
+    if not data.get("ok") or not isinstance(data.get("slug_to_fid"), dict):
+        return {}
+    out: dict[str, int] = {}
+    for k, v in data["slug_to_fid"].items():
+        try:
+            out[str(k)] = int(v)
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
 def filter_planned(
     topics: list[PlannedTopic],
     state: DedupeState | None,
 ) -> tuple[list[PlannedTopic], list[str]]:
     """Return (kept, log_lines)."""
     if not state:
-        return topics, ["dedupe: no DATABASE_URL / DB state; relying on publish_bridge only"]
+        return topics, ["dedupe: no state"]
+    if not state.source_keys and not state.intents:
+        return topics, ["dedupe: no DB prefetch; duplicate check at publish_bridge only"]
     kept: list[PlannedTopic] = []
     log: list[str] = []
     for t in topics:

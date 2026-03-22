@@ -153,6 +153,11 @@ function automation_thread_intent_exists()
 	return automation_pg_table_exists(TABLE_PREFIX.'thread_intent_index');
 }
 
+function automation_forum_seed_map_exists()
+{
+	return automation_pg_table_exists(TABLE_PREFIX.'forum_seed_map');
+}
+
 function automation_pg_table_exists($name)
 {
 	global $db;

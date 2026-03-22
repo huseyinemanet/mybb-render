@@ -18,7 +18,13 @@ import os
 import sys
 import traceback
 
-from workers.dedupe import DedupeState, filter_planned, load_dedupe_state, resolve_fid
+from workers.dedupe import (
+    DedupeState,
+    fetch_slug_to_fid_http,
+    filter_planned,
+    load_dedupe_state,
+    resolve_fid,
+)
 from workers.discovery import load_candidates
 from workers.generate import generate_for_topic
 from workers.llm_client import resolve_llm_provider
@@ -80,13 +86,24 @@ def main() -> int:
     LOG.info("planned_candidates=%s", len(planned))
 
     state: DedupeState | None = load_dedupe_state()
-    if state:
+    if state is None:
+        state = DedupeState(set(), set(), {})
+    else:
         LOG.info(
             "db_prefetch keys=%s intents=%s forums=%s",
             len(state.source_keys),
             len(state.intents),
             len(state.slug_to_fid),
         )
+
+    if not state.slug_to_fid and base and secret:
+        http_map = fetch_slug_to_fid_http(base, secret)
+        if http_map:
+            state.slug_to_fid.update(http_map)
+            LOG.info("forum_map_bridge slugs=%s", len(http_map))
+        else:
+            LOG.warning("forum_map_bridge empty or failed (deploy forum_map_bridge.php + MYBB_PUBLISH_SECRET)")
+
     kept, dlog = filter_planned(planned, state)
     for line in dlog:
         LOG.info("dedupe %s", line)
@@ -146,11 +163,10 @@ def main() -> int:
         if res.get("ok") is True:
             LOG.info("published tid=%s key=%s", res.get("tid"), topic.source_topic_key)
             published += 1
-            if state:
-                state.source_keys.add(topic.source_topic_key)
-                from workers.dedupe import normalize_intent
+            state.source_keys.add(topic.source_topic_key)
+            from workers.dedupe import normalize_intent
 
-                state.intents.add(normalize_intent(topic.canonical_intent))
+            state.intents.add(normalize_intent(topic.canonical_intent))
         elif res.get("error") in ("duplicate_intent", "duplicate_source_key"):
             LOG.info("bridge_duplicate %s %s", topic.source_topic_key, res.get("error"))
         else:

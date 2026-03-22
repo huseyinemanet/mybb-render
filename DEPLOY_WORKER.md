@@ -19,9 +19,18 @@ MyBB web servisi PHP konteynerinde çalışır; **Python worker ayrı tetiklenir
 
 4. **Dakika limiti:** Aşırı LLM çağrısından kaçınmak için `MAX_PUBLISH_PER_RUN=1` bırak; günlerce gözlemledikten sonra `2`–`5` yap.
 
+## Forum `fid` haritası (GitHub’da DB şifresi olmadan)
+
+Worker, `DATABASE_URL` yoksa otomatik olarak şunu çağırır:
+
+`GET {MYBB_BASE_URL}/forum_map_bridge.php`  
+Header: `X-MyBB-Publish-Secret: (MYBB_PUBLISH_SECRET ile aynı)`
+
+Yanıt: `slug_to_fid` (seed edilmiş forum slug’ları). Bu dosya repoda `forum_map_bridge.php`; Render’da **yeniden deploy** gerekir.
+
 ## Render PostgreSQL dışarıdan
 
-`DATABASE_URL` kullanacaksan Render DB panelinde **Allow connections from outside** (veya eşdeğeri) açık olmalı; aksi halde sadece `MYBB_BASE_URL` + `publish_bridge` yeterli olur (ön-dedupe olmadan).
+`DATABASE_URL` eklemen ön-dedupe için ek fayda sağlar. Dış bağlantı kapalıysa yalnızca HTTP harita + `publish_bridge` yeterlidir.
 
 ## `WORKER_FORUM_FIDS_JSON` yedek
 

@@ -34,7 +34,8 @@ pip install -r workers/requirements.txt
 | `MAX_CANDIDATES_PLAN` | Hayır | Planlanan aday üst sınırı (varsayılan 25) |
 | `DATABASE_URL` veya `MYBB_DB_*` | Hayır | Ön-dedupe + `forum_seed_map` → `fid` |
 | `MYBB_TABLE_PREFIX` | DB ile | Örn. `sh2ufntmhy_` |
-| `WORKER_FORUM_FIDS_JSON` | Hayır | `{"forum_pop_gta": 28}` yedek fid haritası |
+| HTTP harita | Varsayılan | `DATABASE_URL` yoksa `GET …/forum_map_bridge.php` (aynı publish secret) |
+| `WORKER_FORUM_FIDS_JSON` | Hayır | Elle slug→fid yedek (köprü çalışmazsa) |
 | `DRY_RUN` | Hayır | `1` = yayınlamaz, sadece log |
 | `SKIP_LLM` | Hayır | `1` = sahte gövde (smoke test) |
 | `TOPIC_CANDIDATES_PATH` | Hayır | Özel YAML yolu |
