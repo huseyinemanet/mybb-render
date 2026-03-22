@@ -125,4 +125,16 @@ chown -R www-data:www-data /var/www/html/cache /var/www/html/uploads /var/www/ht
 chmod 775 /var/www/html/cache /var/www/html/cache/themes /var/www/html/uploads /var/www/html/uploads/avatars
 chmod 664 /var/www/html/inc/config.php /var/www/html/inc/settings.php
 
+# Render Shell is Pro-only; optional one-shot automation on boot (see DEPLOY_RENDER.md).
+# Set MYBB_RUN_CLI_AUTOMATION=1 in the web service env, deploy once, then remove it
+# so cold starts do not re-run seeds (append-only is safe but adds latency).
+if [ "${MYBB_RUN_CLI_AUTOMATION:-}" = "1" ]; then
+	echo "mybb-entrypoint: MYBB_RUN_CLI_AUTOMATION=1 — running migrate + seeds"
+	cd /var/www/html
+	php scripts/migrate_automation_tables.php --apply
+	php scripts/seed_game_forums.php --apply --append-only
+	php scripts/seed_threads.php --apply --append-only
+	echo "mybb-entrypoint: automation finished"
+fi
+
 exec "$@"

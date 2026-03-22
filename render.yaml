@@ -34,6 +34,9 @@ services:
         value: MyBB
       - key: MYBB_PUBLISH_SECRET
         sync: false
+      # Set to 1 once to run migrate + seeds on boot (free tier has no Shell); then remove.
+      - key: MYBB_RUN_CLI_AUTOMATION
+        sync: false
       - key: MYBB_PUBLISH_UID
         value: "1"
         sync: false

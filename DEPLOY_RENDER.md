@@ -32,9 +32,46 @@ Bu repo Render Free icin Docker ile hazirlandi.
 - Otomatik konu yayını için **`MYBB_PUBLISH_SECRET`** tanımlayın (güçlü rastgele dize). Bu değer `publish_bridge.php` isteklerinde zorunludur.
 - Üretimde ACP şifrelerini sohbet veya repoya yazmayın.
 
-## Otomasyon script’leri (Docker / Render Shell)
+## Shell Pro yok — otomasyonu nasıl çalıştırırsın?
 
-Örnek (çalışma dizini repo kökü, `/var/www/html`):
+Render’da **Shell** özelliği ücretli planda. Ücretsiz planda iki yol var.
+
+### A) Deploy sırasında otomatik (önerilen)
+
+1. Render’da **web service** → **Environment** → **Add Environment Variable**
+2. Ad: `MYBB_RUN_CLI_AUTOMATION`, değer: `1`
+3. **Save**; servis yeniden deploy olur. Container ayağa kalkarken sırayla çalışır:
+   - `migrate_automation_tables.php --apply`
+   - `seed_game_forums.php --apply --append-only`
+   - `seed_threads.php --apply --append-only`
+4. Deploy **başarılı** olduktan sonra bu değişkeni **sil** veya `0` yapıp tekrar kaydet. Böylece her uyandırmada seed tekrarlanmaz (zarar vermez ama gereksiz süre yer).
+
+`--append-only` zaten ikinci kez çalışsa da çoğu işi atlar; yine de bayrağı kapatman iyi pratik.
+
+### B) Kendi bilgisayarından (Shell’siz)
+
+1. Render’da **PostgreSQL** → **Connections** / **External Database URL** (veya host, port, user, password, database adı).
+2. Mac’te proje klasöründe aynı değerlerle ortam değişkenlerini verip script’leri çalıştır:
+
+```bash
+cd /path/to/mybb
+export MYBB_DB_TYPE=pgsql
+export MYBB_DB_HOST="…"    # Render’ın verdiği host
+export MYBB_DB_PORT="5432"
+export MYBB_DB_NAME=mybb
+export MYBB_DB_USER="…"
+export MYBB_DB_PASSWORD="…"
+export MYBB_TABLE_PREFIX="sh2ufntmhy_"   # kendi prefix’in neyse
+php scripts/migrate_automation_tables.php --apply
+php scripts/seed_game_forums.php --apply --append-only
+php scripts/seed_threads.php --apply --append-only
+```
+
+Prefix’i `inc/config.php` veya Render env’deki `MYBB_TABLE_PREFIX` ile aynı tut.
+
+## Otomasyon script’leri (Docker / Render Shell — Pro)
+
+Shell erişimin varsa, çalışma dizini `/var/www/html`:
 
 ```bash
 php scripts/migrate_automation_tables.php --apply
