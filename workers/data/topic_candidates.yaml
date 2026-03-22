@@ -1,0 +1,92 @@
+# Topic pool for the content worker (Discovery). Templates define routing + safety.
+# source_topic_key = slugify("auto-{template_key}-{game}") — unique per row.
+# canonical_intent = stable phrase for MyBB thread_intent_index dedupe (see planner.py).
+
+templates:
+  cheats_full_list:
+    content_type: cheats
+    forum_slug: "" # resolved from game family → forum_pop_*
+    safe_tier: low
+  save_location:
+    content_type: guide
+    forum_slug: forum_guides_save
+    safe_tier: low
+  fps_tweaks:
+    content_type: tech
+    forum_slug: forum_tech_fps
+    safe_tier: low
+  quest_guide_stub:
+    content_type: guide
+    forum_slug: forum_guides_quests
+    safe_tier: medium
+  puzzle_stub:
+    content_type: guide
+    forum_slug: forum_guides_puzzles
+    safe_tier: medium
+  career_youth:
+    content_type: guide
+    forum_slug: forum_pop_pes_fifa
+    safe_tier: low
+  lowspec_list:
+    content_type: list
+    forum_slug: forum_lists_lowspec
+    safe_tier: low
+
+candidates:
+  - game: "GTA Vice City"
+    template_key: cheats_full_list
+    priority: 100
+  - game: "GTA San Andreas"
+    template_key: cheats_full_list
+    priority: 99
+  - game: "Skyrim SE"
+    template_key: save_location
+    priority: 98
+  - game: "Cyberpunk 2077"
+    template_key: save_location
+    priority: 97
+  - game: "Cyberpunk 2077"
+    template_key: fps_tweaks
+    priority: 96
+  - game: "Resident Evil 4"
+    template_key: puzzle_stub
+    priority: 85
+  - game: "PES 2013"
+    template_key: career_youth
+    priority: 84
+  - game: "The Witcher 3"
+    template_key: quest_guide_stub
+    priority: 83
+  - game: "Fallout 4"
+    template_key: save_location
+    priority: 82
+  - game: "Minecraft"
+    template_key: quest_guide_stub
+    priority: 70
+  - game: "Mount & Blade II Bannerlord"
+    template_key: quest_guide_stub
+    priority: 69
+  - game: "Silent Hill 2"
+    template_key: puzzle_stub
+    priority: 68
+  - game: "Red Dead Redemption 2"
+    template_key: save_location
+    priority: 67
+  - game: "The Sims 4"
+    template_key: save_location
+    priority: 66
+  - game: "FC 24"
+    template_key: career_youth
+    priority: 65
+  - game: "Oblivion"
+    template_key: save_location
+    priority: 64
+  - game: "GTA III"
+    template_key: cheats_full_list
+    priority: 63
+  - game: "Resident Evil 2 Remake"
+    template_key: puzzle_stub
+    priority: 62
+  - game: "Düşük sistem örnek oyun"
+    template_key: lowspec_list
+    priority: 40

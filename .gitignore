@@ -11,3 +11,7 @@
 !/uploads/avatars/
 !/uploads/avatars/index.html
 /.ops/backups/*
+.venv/
+.venv-worker/
+workers/__pycache__/
+**/__pycache__/

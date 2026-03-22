@@ -32,6 +32,10 @@ Bu repo Render Free icin Docker ile hazirlandi.
 - Otomatik konu yayını için **`MYBB_PUBLISH_SECRET`** tanımlayın (güçlü rastgele dize). Bu değer `publish_bridge.php` isteklerinde zorunludur.
 - Üretimde ACP şifrelerini sohbet veya repoya yazmayın.
 
+## Zamanlanmış içerik worker (Python)
+
+MyBB imajında Python yok; otomatik konu üretimi **GitHub Actions** veya ayrı worker ile çalışır. Kurulum: [DEPLOY_WORKER.md](DEPLOY_WORKER.md).
+
 ## Shell Pro yok — otomasyonu nasıl çalıştırırsın?
 
 Render’da **Shell** özelliği ücretli planda. Ücretsiz planda iki yol var.
