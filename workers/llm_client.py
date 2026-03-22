@@ -46,6 +46,12 @@ OPENAI_JSON_SCHEMA_WRAPPER: dict[str, Any] = {
 }
 
 
+def _env_model(key: str, default: str) -> str:
+    """GitHub Actions often passes empty env vars; treat those as unset."""
+    v = (os.environ.get(key) or "").strip()
+    return v or default
+
+
 def _system_rules() -> str:
     return """Sen Türkçe yazan bir oyun rehberi editörüsün.
 Kurallar:
@@ -63,7 +69,7 @@ def generate_article_openai(
     from openai import OpenAI
 
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
-    m = model or os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+    m = model or _env_model("OPENAI_MODEL", "gpt-4o-mini")
     resp = client.chat.completions.create(
         model=m,
         messages=[
@@ -83,7 +89,7 @@ def generate_article_anthropic(user_prompt: str, model: str | None = None) -> di
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", ""))
-    m = model or os.environ.get("ANTHROPIC_MODEL", "claude-3-5-haiku-20241022")
+    m = model or _env_model("ANTHROPIC_MODEL", "claude-haiku-4-5")
     schema_str = json.dumps(ARTICLE_JSON_INNER)
     msg = client.messages.create(
         model=m,

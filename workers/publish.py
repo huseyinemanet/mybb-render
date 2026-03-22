@@ -22,7 +22,9 @@ def publish_thread(
     quality_score: float = 0.75,
 ) -> dict[str, Any]:
     url = base_url.rstrip("/") + "/publish_bridge.php"
-    uid = uid if uid is not None else int(os.environ.get("MYBB_PUBLISH_UID", "1"))
+    if uid is None:
+        raw = (os.environ.get("MYBB_PUBLISH_UID") or "").strip()
+        uid = int(raw) if raw else 1
     payload = {
         "fid": fid,
         "subject": subject,
