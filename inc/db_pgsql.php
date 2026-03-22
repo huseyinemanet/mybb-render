@@ -494,6 +494,27 @@ class DB_PgSQL implements DB_Base
 	}
 
 	/**
+	 * Primary key column for a physical relation (pg_class.relname), e.g. sh2ufntmhy_forums.
+	 * Avoids information_schema + {table}_pkey — imports often keep constraint names like mybb_*_pkey.
+	 *
+	 * @param string $relname
+	 * @return string|false
+	 */
+	function fetch_primary_key_column_for_rel($relname)
+	{
+		$rel = str_replace("'", "''", $relname);
+		$query = $this->query("SELECT a.attname AS column_name
+			FROM pg_index i
+			JOIN pg_class c ON c.oid = i.indrelid
+			JOIN pg_namespace n ON n.oid = c.relnamespace
+			JOIN pg_attribute a ON a.attrelid = c.oid AND a.attnum = ANY(i.indkey) AND NOT a.attisdropped
+			WHERE n.nspname = ANY (current_schemas(false)) AND c.relname = '{$rel}' AND i.indisprimary
+			ORDER BY a.attnum
+			LIMIT 1");
+		return $this->fetch_field($query, 'column_name');
+	}
+
+	/**
 	 * Return the last id number of inserted data.
 	 *
 	 * @return int The id number.
@@ -504,8 +525,7 @@ class DB_PgSQL implements DB_Base
 
 		$table = $matches[1];
 
-		$query = $this->query("SELECT column_name FROM information_schema.constraint_column_usage WHERE table_name = '{$table}' and constraint_name = '{$table}_pkey' LIMIT 1");
-		$field = $this->fetch_field($query, 'column_name');
+		$field = $this->fetch_primary_key_column_for_rel($table);
 
 		// Do we not have a primary field?
 		if(!$field)
@@ -1154,8 +1174,7 @@ class DB_PgSQL implements DB_Base
 	 */
 	function show_fields_from($table)
 	{
-		$query = $this->write_query("SELECT column_name FROM information_schema.constraint_column_usage WHERE table_name = '{$this->table_prefix}{$table}' and constraint_name = '{$this->table_prefix}{$table}_pkey' LIMIT 1");
-		$primary_key = $this->fetch_field($query, 'column_name');
+		$primary_key = $this->fetch_primary_key_column_for_rel($this->table_prefix.$table);
 
 		$query = $this->write_query("
 			SELECT column_name, data_type, is_nullable, column_default, character_maximum_length, numeric_precision, numeric_precision_radix, numeric_scale
@@ -1394,8 +1413,11 @@ class DB_PgSQL implements DB_Base
 
 		if($default_field == "")
 		{
-			$query = $this->write_query("SELECT column_name FROM information_schema.constraint_column_usage WHERE table_name = '{$this->table_prefix}{$table}' and constraint_name = '{$this->table_prefix}{$table}_pkey' LIMIT 1");
-			$main_field = $this->fetch_field($query, 'column_name');
+			$main_field = $this->fetch_primary_key_column_for_rel($this->table_prefix.$table);
+			if(!$main_field)
+			{
+				return false;
+			}
 		}
 		else
 		{

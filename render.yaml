@@ -24,10 +24,19 @@ services:
         sync: false
       - key: MYBB_TABLE_PREFIX
         sync: false
+      - key: MYBB_BB_LANGUAGE
+        value: turkish
+      - key: MYBB_CP_LANGUAGE
+        value: turkish
       - key: MYBB_FORUM_NAME
         value: MyBB
       - key: MYBB_SITE_NAME
         value: MyBB
+      - key: MYBB_PUBLISH_SECRET
+        sync: false
+      - key: MYBB_PUBLISH_UID
+        value: "1"
+        sync: false
       - key: MYBB_ADMIN_EMAIL
         value: admin@localhost
       - key: MYBB_DB_TYPE
