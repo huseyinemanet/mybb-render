@@ -25,6 +25,15 @@ class DedupeState:
     slug_to_fid: dict[str, int]
 
 
+@dataclass(frozen=True)
+class RecentPublishRow:
+    """Rows from content_meta for editorial diversity (game_name, content_type, published_at)."""
+
+    game_name: str
+    content_type: str
+    published_at: int
+
+
 def _table(prefix: str, name: str) -> str:
     p = prefix.rstrip("_") + "_" if prefix and not prefix.endswith("_") else prefix
     if not p.endswith("_"):
@@ -89,6 +98,56 @@ def load_dedupe_state() -> DedupeState | None:
             except Exception:
                 pass
     return DedupeState(keys, intents, slug_to_fid)
+
+
+def load_recent_content_meta(
+    lookback_days: int | None = None,
+) -> list[RecentPublishRow]:
+    """
+    Fetch recent publishes for diversity quotas. Returns [] if no DB or table missing.
+    lookback_days from DIVERSITY_QUERY_LOOKBACK_DAYS (default 45).
+    """
+    dsn = _connect_dsn()
+    if not dsn:
+        return []
+    if lookback_days is None:
+        raw = os.environ.get("DIVERSITY_QUERY_LOOKBACK_DAYS", "").strip()
+        lookback_days = int(raw) if raw.isdigit() else 45
+    lookback_days = max(1, min(lookback_days, 365))
+    prefix = os.environ.get("MYBB_TABLE_PREFIX", "mybb_")
+    try:
+        import psycopg
+    except ImportError:
+        return []
+
+    t_meta = _table(prefix, "content_meta")
+    import time
+
+    cutoff = int(time.time()) - lookback_days * 86400
+    out: list[RecentPublishRow] = []
+    try:
+        with psycopg.connect(dsn, connect_timeout=15) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    f"""
+                    SELECT game_name, content_type, published_at
+                    FROM "{t_meta}"
+                    WHERE published_at >= %s
+                    ORDER BY published_at DESC
+                    """,
+                    (cutoff,),
+                )
+                for game_name, content_type, published_at in cur.fetchall():
+                    g = str(game_name or "").strip()
+                    ct = str(content_type or "").strip()
+                    try:
+                        ts = int(published_at)
+                    except (TypeError, ValueError):
+                        continue
+                    out.append(RecentPublishRow(g, ct, ts))
+    except Exception:
+        return []
+    return out
 
 
 def fetch_slug_to_fid_http(base_url: str, secret: str) -> dict[str, int]:

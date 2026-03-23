@@ -88,10 +88,10 @@ $l['remove_subscriptions'] = "Konu Abonelikleri Kaldırılsın Mı?";
 $l['recount_rebuild'] = "Sayaçlar Sayılsın Mı?";
 $l['apply_thread_prefix'] = "Konu Önekleri Silinsin Mi?";
 $l['new_subject'] = "Yeni Başlık?";
-$l['new_subject_desc'] = "Enter the new subject for the thread.";
+$l['new_subject_desc'] = "Konu için yeni bir başlık giriniz.";
 
-$l['subject_message_replacements'] = "Available replacements";
-$l['subject_message_replacements_desc'] = Only used if a reply was made.";
+$l['subject_message_replacements'] = "Kullanılabilir değişkenler";
+$l['subject_message_replacements_desc'] = "Sadece bir cevap yazıldıysa kullanılır.";
 
 $l['add_new_reply'] = "Yeni Yorum Ekle";
 $l['add_new_reply_desc'] = "Yorum Yazmak İstemiyorsanız Boş Bırakın.";
@@ -117,7 +117,7 @@ $l['stick_split_thread'] = "Ayrıştırılan Konu Üstte Tutturulsun Mu?";
 $l['unapprove_split_thread'] = "Ayrıştırılan Konu Onaylansın mı?";
 $l['split_thread_prefix'] = "Ayrıştırılan Konu Ön Eki";
 $l['split_thread_subject'] = "Konu Başlığını Ayır";
-$l['split_thread_subject_desc'] = "Only required if splitting posts.";
+$l['split_thread_subject_desc'] = "Sadece mesajlar/yorumlar ayrıştırılıyorsa gereklidir.";
 $l['add_new_split_reply'] = "Ayrıştırılan Konuya Yorum Ekle";
 $l['add_new_split_reply_desc'] = "Yorum Yazmak İstemiyorsanız Boş Bırakın.";
 $l['split_reply_subject'] = "Konuyu Yorumla";

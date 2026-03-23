@@ -21,6 +21,7 @@ ARTICLE_JSON_INNER: dict[str, Any] = {
                 "additionalProperties": False,
                 "properties": {
                     "heading": {"type": "string"},
+                    "kind": {"type": "string", "enum": ["body", "howto", "reference"]},
                     "paragraphs": {
                         "type": "array",
                         "items": {"type": "string"},
@@ -29,14 +30,32 @@ ARTICLE_JSON_INNER: dict[str, Any] = {
                         "type": "array",
                         "items": {"type": "string"},
                     },
+                    "steps": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                    },
                 },
-                "required": ["heading", "paragraphs", "bullets"],
+                "required": ["heading", "kind", "paragraphs", "bullets", "steps"],
             },
         },
         "warnings": {"type": "array", "items": {"type": "string"}},
         "internal_link_hints": {"type": "array", "items": {"type": "string"}},
+        "cheat_entries": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "properties": {
+                    "code": {"type": "string"},
+                    "effect": {"type": "string"},
+                    "platform_note": {"type": "string"},
+                    "confidence": {"type": "string", "enum": ["high", "medium"]},
+                },
+                "required": ["code", "effect", "platform_note", "confidence"],
+            },
+        },
     },
-    "required": ["title", "intro", "sections", "warnings", "internal_link_hints"],
+    "required": ["title", "intro", "sections", "warnings", "internal_link_hints", "cheat_entries"],
 }
 
 OPENAI_JSON_SCHEMA_WRAPPER: dict[str, Any] = {
@@ -57,11 +76,12 @@ def _system_rules() -> str:
 Kurallar:
 - Sadece tek oyunculu / offline içerik; çok oyunculu hile, exploit, ban riski yok.
 - Korsan teşvik etme; sürüm ve platform (PC/konsol/mağaza) farklarını açıkça belirt.
-- Doğrulanabilir gerçekleri uydurma: hile kodu, konsol komutu, tam dosya yolu, menü adı, karakter/yer adı,
-  sürüm numarası veya istatistik yazmadan önce emin olmalısın. Emin değilsen genel çerçeve anlat ve
-  okuyucuya güvenilir wiki veya resmî kaynakta doğrulama öner; yanlış kod veya isim riski yüksektir.
+- Okuyucunun sorusunu doğrudan yanıtla: genel geçer tavsiye yerine uygulanabilir, net ve kısa adımlar üret.
+- Başlıkta clickbait kullanma; konu niyetiyle uyumlu, dürüst ve okunabilir ol.
+- Doğrulanabilir teknik iddiada (kod, dosya yolu, menü adı, sürüm, karakter/yer adı, istatistik) uydurma yapma.
+  Emin olmadığında bunu açıkça belirt, güvenilir kaynakta nasıl doğrulanacağını kısaca söyle ve belirsiz bilgiyi kesinmiş gibi yazma.
 - Çıktı SADECE istenen JSON şemasına uysun; markdown code fence kullanma.
-- İçerik özet ve şablon niteliğinde olsun; kısa ama yapılandırılmış bölümler kullan.
+- Kullanıcı mesajında verilen oyun adı ve konu başlığına bağlı kal; başka bir oyuna kayma veya varsayılan örnek oyun uydurma.
 """
 
 

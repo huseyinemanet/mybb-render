@@ -23,12 +23,14 @@ from workers.dedupe import (
     fetch_slug_to_fid_http,
     filter_planned,
     load_dedupe_state,
+    load_recent_content_meta,
     resolve_fid,
 )
 from workers.discovery import load_candidates
 from workers.generate import generate_for_topic
 from workers.llm_client import resolve_llm_provider
 from workers.planner import plan_topics
+from workers.topic_selection import select_next_topics
 from workers.publish import publish_thread
 from workers.qc import check_topic
 
@@ -83,7 +85,18 @@ def main() -> int:
 
     templates, raw = load_candidates()
     planned = plan_topics(templates, raw, max_candidates=max_pool)
-    LOG.info("planned_candidates=%s", len(planned))
+    recent_meta = load_recent_content_meta()
+    planned = select_next_topics(planned, recent_meta)
+    LOG.info("planned_candidates=%s diversity_recent_rows=%s", len(planned), len(recent_meta))
+    if planned:
+        first = planned[0]
+        LOG.info(
+            "diversity_first key=%s game=%s template=%s content_type=%s",
+            first.source_topic_key,
+            first.game,
+            first.template_key,
+            first.content_type,
+        )
 
     state: DedupeState | None = load_dedupe_state()
     if state is None:
@@ -142,7 +155,7 @@ def main() -> int:
             LOG.debug(traceback.format_exc())
             continue
 
-        qc = check_topic(topic, subject, body)
+        qc = check_topic(topic, subject, body, raw_art)
         if not qc.ok:
             LOG.warning("qc_reject %s: %s", topic.source_topic_key, qc.reason)
             continue

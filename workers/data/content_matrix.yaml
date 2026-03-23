@@ -1,0 +1,139 @@
+# Allowed (game, template_key) pairs. Games not listed here accept any template from topic_candidates.yaml.
+matrix:
+  "GTA III":
+    - cheats_full_list
+    - save_location
+    - fps_tweaks
+    - beginner_guide
+    - mod_install_stub
+  "GTA Vice City":
+    - cheats_full_list
+    - save_location
+    - fps_tweaks
+    - beginner_guide
+    - mod_install_stub
+  "GTA San Andreas":
+    - cheats_full_list
+    - save_location
+    - fps_tweaks
+    - beginner_guide
+    - mod_install_stub
+  "Skyrim SE":
+    - save_location
+    - quest_guide_stub
+    - build_guide_stub
+    - beginner_guide
+    - mod_install_stub
+    - walkthrough_stub
+    - item_location_stub
+  "Oblivion":
+    - save_location
+    - quest_guide_stub
+    - beginner_guide
+    - mod_install_stub
+  "Morrowind":
+    - save_location
+    - quest_guide_stub
+    - beginner_guide
+  "Fallout: New Vegas":
+    - save_location
+    - quest_guide_stub
+    - build_guide_stub
+    - beginner_guide
+  "Fallout 4":
+    - save_location
+    - fps_tweaks
+    - quest_guide_stub
+    - beginner_guide
+    - mod_install_stub
+  "Cyberpunk 2077":
+    - save_location
+    - fps_tweaks
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+    - mod_install_stub
+    - config_guide_stub
+  "The Witcher 3":
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+    - walkthrough_stub
+    - item_location_stub
+    - mod_install_stub
+  "Resident Evil 4":
+    - puzzle_stub
+    - quest_guide_stub
+    - beginner_guide
+    - walkthrough_stub
+    - item_location_stub
+  "Resident Evil 2 Remake":
+    - puzzle_stub
+    - quest_guide_stub
+    - beginner_guide
+    - walkthrough_stub
+  "Resident Evil Village":
+    - puzzle_stub
+    - quest_guide_stub
+    - beginner_guide
+  "Silent Hill 2":
+    - puzzle_stub
+    - quest_guide_stub
+    - walkthrough_stub
+    - beginner_guide
+  "Red Dead Redemption 2":
+    - save_location
+    - quest_guide_stub
+    - beginner_guide
+    - walkthrough_stub
+  "Minecraft":
+    - quest_guide_stub
+    - beginner_guide
+    - mod_install_stub
+    - item_location_stub
+    - save_location
+  "The Sims 4":
+    - save_location
+    - beginner_guide
+    - config_guide_stub
+  "Mount & Blade: Warband":
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+  "Mount & Blade II Bannerlord":
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+  "PES 2013":
+    - career_youth
+    - beginner_guide
+  "FC 24":
+    - career_youth
+    - beginner_guide
+  "Starfield":
+    - save_location
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+  "Hogwarts Legacy":
+    - quest_guide_stub
+    - puzzle_stub
+    - beginner_guide
+    - save_location
+  "Baldur's Gate 3":
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+    - puzzle_stub
+  "Dark Souls III":
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+    - item_location_stub
+  "Elden Ring":
+    - quest_guide_stub
+    - beginner_guide
+    - build_guide_stub
+    - item_location_stub
+  "Düşük sistem örnek oyun":
+    - lowspec_list

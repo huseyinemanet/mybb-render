@@ -1,11 +1,13 @@
 # Topic pool for the content worker (Discovery). Templates define routing + safety.
 # source_topic_key = slugify("auto-{template_key}-{game}") — unique per row.
 # canonical_intent = stable phrase for MyBB thread_intent_index dedupe (see planner.py).
+# Optional series: overrides franchise bucket for DIVERSITY_MAX_PER_SERIES_PER_DAY (see topic_selection.py).
+# content_matrix.yaml restricts (game, template_key) when the game appears there.
 
 templates:
   cheats_full_list:
     content_type: cheats
-    forum_slug: "" # resolved from game family → forum_pop_*
+    forum_slug: ""
     safe_tier: low
   save_location:
     content_type: guide
@@ -31,62 +33,209 @@ templates:
     content_type: list
     forum_slug: forum_lists_lowspec
     safe_tier: low
+  beginner_guide:
+    content_type: guide
+    forum_slug: ""
+    safe_tier: medium
+  build_guide_stub:
+    content_type: guide
+    forum_slug: ""
+    safe_tier: medium
+  mod_install_stub:
+    content_type: guide
+    forum_slug: ""
+    safe_tier: medium
+  walkthrough_stub:
+    content_type: guide
+    forum_slug: ""
+    safe_tier: medium
+  item_location_stub:
+    content_type: guide
+    forum_slug: ""
+    safe_tier: medium
+  list_series_order:
+    content_type: list
+    forum_slug: forum_lists_story
+    safe_tier: low
+  config_guide_stub:
+    content_type: tech
+    forum_slug: forum_tech_fps
+    safe_tier: low
 
 candidates:
-  - game: "GTA Vice City"
-    template_key: cheats_full_list
-    priority: 100
-  - game: "GTA San Andreas"
-    template_key: cheats_full_list
-    priority: 99
-  - game: "Skyrim SE"
-    template_key: save_location
-    priority: 98
-  - game: "Cyberpunk 2077"
-    template_key: save_location
-    priority: 97
-  - game: "Cyberpunk 2077"
-    template_key: fps_tweaks
-    priority: 96
-  - game: "Resident Evil 4"
-    template_key: puzzle_stub
-    priority: 85
-  - game: "PES 2013"
-    template_key: career_youth
-    priority: 84
-  - game: "The Witcher 3"
-    template_key: quest_guide_stub
-    priority: 83
-  - game: "Fallout 4"
-    template_key: save_location
-    priority: 82
-  - game: "Minecraft"
-    template_key: quest_guide_stub
-    priority: 70
-  - game: "Mount & Blade II Bannerlord"
-    template_key: quest_guide_stub
-    priority: 69
-  - game: "Silent Hill 2"
-    template_key: puzzle_stub
-    priority: 68
-  - game: "Red Dead Redemption 2"
-    template_key: save_location
-    priority: 67
-  - game: "The Sims 4"
-    template_key: save_location
-    priority: 66
-  - game: "FC 24"
-    template_key: career_youth
-    priority: 65
-  - game: "Oblivion"
-    template_key: save_location
-    priority: 64
-  - game: "GTA III"
-    template_key: cheats_full_list
-    priority: 63
-  - game: "Resident Evil 2 Remake"
-    template_key: puzzle_stub
-    priority: 62
+  # --- Lists & editorial (no single-title matrix row required) ---
+  - game: "Resident Evil"
+    template_key: list_series_order
+    priority: 76
+  - game: "Elder Scrolls"
+    template_key: list_series_order
+    priority: 75
+  - game: "Fallout"
+    template_key: list_series_order
+    priority: 74
   - game: "Düşük sistem örnek oyun"
     template_key: lowspec_list
-    priority: 40
+    priority: 73
+
+  # --- GTA: cheats de-prioritized vs guides/tech; shared series bucket ---
+  - game: "GTA Vice City"
+    template_key: save_location
+    priority: 72
+    series: gta
+  - game: "GTA San Andreas"
+    template_key: fps_tweaks
+    priority: 71
+    series: gta
+  - game: "GTA III"
+    template_key: beginner_guide
+    priority: 70
+    series: gta
+  - game: "GTA Vice City"
+    template_key: beginner_guide
+    priority: 69
+    series: gta
+  - game: "GTA San Andreas"
+    template_key: mod_install_stub
+    priority: 68
+    series: gta
+  - game: "GTA III"
+    template_key: cheats_full_list
+    priority: 62
+    series: gta
+  - game: "GTA Vice City"
+    template_key: cheats_full_list
+    priority: 61
+    series: gta
+  - game: "GTA San Andreas"
+    template_key: cheats_full_list
+    priority: 60
+    series: gta
+
+  # --- Open-world / RPG ---
+  - game: "Skyrim SE"
+    template_key: save_location
+    priority: 78
+  - game: "Skyrim SE"
+    template_key: build_guide_stub
+    priority: 77
+  - game: "Skyrim SE"
+    template_key: quest_guide_stub
+    priority: 76
+  - game: "Skyrim SE"
+    template_key: mod_install_stub
+    priority: 75
+  - game: "Oblivion"
+    template_key: save_location
+    priority: 77
+  - game: "Oblivion"
+    template_key: quest_guide_stub
+    priority: 76
+  - game: "Morrowind"
+    template_key: save_location
+    priority: 75
+  - game: "Morrowind"
+    template_key: beginner_guide
+    priority: 74
+  - game: "Fallout: New Vegas"
+    template_key: save_location
+    priority: 77
+  - game: "Fallout: New Vegas"
+    template_key: build_guide_stub
+    priority: 76
+  - game: "Fallout 4"
+    template_key: fps_tweaks
+    priority: 76
+  - game: "Fallout 4"
+    template_key: quest_guide_stub
+    priority: 75
+  - game: "Cyberpunk 2077"
+    template_key: save_location
+    priority: 78
+  - game: "Cyberpunk 2077"
+    template_key: fps_tweaks
+    priority: 77
+  - game: "Cyberpunk 2077"
+    template_key: config_guide_stub
+    priority: 76
+  - game: "The Witcher 3"
+    template_key: quest_guide_stub
+    priority: 77
+  - game: "The Witcher 3"
+    template_key: item_location_stub
+    priority: 76
+  - game: "Starfield"
+    template_key: quest_guide_stub
+    priority: 75
+  - game: "Starfield"
+    template_key: beginner_guide
+    priority: 74
+  - game: "Baldur's Gate 3"
+    template_key: quest_guide_stub
+    priority: 77
+  - game: "Baldur's Gate 3"
+    template_key: puzzle_stub
+    priority: 76
+  - game: "Hogwarts Legacy"
+    template_key: quest_guide_stub
+    priority: 75
+  - game: "Dark Souls III"
+    template_key: beginner_guide
+    priority: 74
+  - game: "Elden Ring"
+    template_key: build_guide_stub
+    priority: 75
+  - game: "Elden Ring"
+    template_key: item_location_stub
+    priority: 74
+
+  # --- Action / horror ---
+  - game: "Resident Evil 4"
+    template_key: puzzle_stub
+    priority: 76
+  - game: "Resident Evil 4"
+    template_key: walkthrough_stub
+    priority: 75
+  - game: "Resident Evil 2 Remake"
+    template_key: puzzle_stub
+    priority: 75
+  - game: "Resident Evil Village"
+    template_key: quest_guide_stub
+    priority: 74
+  - game: "Silent Hill 2"
+    template_key: puzzle_stub
+    priority: 74
+  - game: "Silent Hill 2"
+    template_key: walkthrough_stub
+    priority: 73
+
+  # --- Sandbox / sims / sports ---
+  - game: "Red Dead Redemption 2"
+    template_key: save_location
+    priority: 76
+  - game: "Red Dead Redemption 2"
+    template_key: beginner_guide
+    priority: 75
+  - game: "Minecraft"
+    template_key: beginner_guide
+    priority: 76
+  - game: "Minecraft"
+    template_key: mod_install_stub
+    priority: 75
+  - game: "The Sims 4"
+    template_key: save_location
+    priority: 75
+  - game: "The Sims 4"
+    template_key: config_guide_stub
+    priority: 74
+  - game: "Mount & Blade: Warband"
+    template_key: quest_guide_stub
+    priority: 74
+  - game: "Mount & Blade II Bannerlord"
+    template_key: build_guide_stub
+    priority: 75
+  - game: "PES 2013"
+    template_key: career_youth
+    priority: 73
+  - game: "FC 24"
+    template_key: career_youth
+    priority: 72

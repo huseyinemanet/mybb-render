@@ -7,6 +7,44 @@ Options -MultiViews +FollowSymlinks -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    # Canonicalize accidental double-leading-slash paths.
+    RewriteRule ^/+(.+)$ /$1 [R=301,L]
+    # Some hosts require RewriteBase to make RewriteRules work.
+    RewriteBase /
+
+    # Google SEO workaround for search.php highlights:
+    # Make this rule the first rewrite rule in your .htaccess!
+    RewriteRule ^([^&]*)&(.*)$ http://127.0.0.1:8080/$1?$2 [L,QSA,R=301]
+
+    # SEO path-style URLs can make relative assets resolve under /thread/... etc.
+    # Map those back to real static asset roots.
+    RewriteRule ^(?:thread|forum|user|announcement|calendar|event)/(images|jscripts|uploads|cache)/(.+)$ $1/$2 [L,QSA,NC]
+
+    # Normalize accidentally prefixed core PHP endpoints (relative link fallout).
+    RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+    RewriteRule ^(?:thread|forum|user|announcement|calendar|event)/([A-Za-z0-9_]+)\.php$ $1.php [L,QSA,NC]
+
+    # Google SEO Sitemap:
+    RewriteRule ^sitemap\-([^./]+)\.xml$ misc.php?google_seo_sitemap=$1 [L,QSA,NC]
+
+    # Google SEO URL Forums:
+    RewriteRule ^forum/([^./]+)$ forumdisplay.php?google_seo_forum=$1 [L,QSA,NC]
+
+    # Google SEO URL Threads:
+    RewriteRule ^thread/([^./]+)$ showthread.php?google_seo_thread=$1 [L,QSA,NC]
+
+    # Google SEO URL Announcements:
+    RewriteRule ^announcement/([^./]+)$ announcements.php?google_seo_announcement=$1 [L,QSA,NC]
+
+    # Google SEO URL Users:
+    RewriteRule ^user/([^./]+)$ member.php?action=profile&google_seo_user=$1 [L,QSA,NC]
+
+    # Google SEO URL Calendars:
+    RewriteRule ^calendar/([^./]+)$ calendar.php?google_seo_calendar=$1 [L,QSA,NC]
+
+    # Google SEO URL Events:
+    RewriteRule ^event/([^./]+)$ calendar.php?action=event&google_seo_event=$1 [L,QSA,NC]
+
     RewriteRule ^inc/(config\.php|settings\.php)$ - [F,L]
     RewriteRule ^inc/ - [F,L]
     RewriteRule ^install/resources/ - [F,L]
@@ -32,6 +70,9 @@ Options -MultiViews +FollowSymlinks -Indexes
         SetEnv SEO_SUPPORT 1
     </IfModule>
 </IfModule>
+
+# Google SEO 404:
+ErrorDocument 404 /misc.php?google_seo_error=404
 
 <IfModule mod_headers.c>
     Header always set X-Frame-Options "SAMEORIGIN"

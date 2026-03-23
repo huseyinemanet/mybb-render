@@ -1120,7 +1120,9 @@ function redirect($url, $message="", $title="", $force_redirect=false)
 
 		if(!my_validate_url($url, true, true))
 		{
-			header("Location: {$mybb->settings['bburl']}/{$url}");
+			$base = rtrim($mybb->settings['bburl'], '/');
+			$path = ltrim($url, '/');
+			header("Location: {$base}/{$path}");
 		}
 		else
 		{
@@ -1143,6 +1145,15 @@ function redirect($url, $message="", $title="", $force_redirect=false)
  */
 function multipage($count, $perpage, $page, $url, $breadcrumb=false)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_multipage"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $newurl = google_seo_url_multipage($url);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($newurl)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         $url = $newurl;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	global $theme, $templates, $lang, $mybb, $plugins;
 
 	if($count <= $perpage)
@@ -5496,6 +5507,12 @@ function leave_usergroup($uid, $leavegroup)
  */
 function get_current_location($fields=false, $ignore=array(), $quick=false)
 {
+/* + PL:google_seo + */ global $mybb, $google_seo_location;
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */ if($google_seo_location && !$fields)
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     return $google_seo_location;
+/* + PL:google_seo + */ }
 	global $mybb;
 
 	if(defined("MYBB_LOCATION"))
@@ -6424,6 +6441,15 @@ function get_event_date($event)
  */
 function get_profile_link($uid=0)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_profile"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_profile($uid);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	$link = str_replace("{uid}", $uid, PROFILE_URL);
 	return htmlspecialchars_uni($link);
 }
@@ -6436,6 +6462,15 @@ function get_profile_link($uid=0)
  */
 function get_announcement_link($aid=0)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_announcement"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_announcement($aid);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	$link = str_replace("{aid}", $aid, ANNOUNCEMENT_URL);
 	return htmlspecialchars_uni($link);
 }
@@ -6489,6 +6524,15 @@ function build_profile_link($username="", $uid=0, $target="", $onclick="")
  */
 function get_forum_link($fid, $page=0)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_forum"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_forum($fid, $page);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	if($page > 0)
 	{
 		$link = str_replace("{fid}", $fid, FORUM_URL_PAGED);
@@ -6512,6 +6556,15 @@ function get_forum_link($fid, $page=0)
  */
 function get_thread_link($tid, $page=0, $action='')
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_thread"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_thread($tid, $page, $action);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	if($page > 1)
 	{
 		if($action)
@@ -6552,6 +6605,15 @@ function get_thread_link($tid, $page=0, $action='')
  */
 function get_post_link($pid, $tid=0)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_post"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_post($pid, $tid);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	if($tid > 0)
 	{
 		$link = str_replace("{tid}", $tid, THREAD_URL_POST);
@@ -6573,6 +6635,15 @@ function get_post_link($pid, $tid=0)
  */
 function get_event_link($eid)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_event"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_event($eid);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	$link = str_replace("{eid}", $eid, EVENT_URL);
 	return htmlspecialchars_uni($link);
 }
@@ -6588,6 +6659,15 @@ function get_event_link($eid)
  */
 function get_calendar_link($calendar, $year=0, $month=0, $day=0)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_calendar"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_calendar($calendar, $year, $month, $day);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	if($day > 0)
 	{
 		$link = str_replace("{month}", $month, CALENDAR_URL_DAY);
@@ -6623,6 +6703,15 @@ function get_calendar_link($calendar, $year=0, $month=0, $day=0)
  */
 function get_calendar_week_link($calendar, $week)
 {
+/* + PL:google_seo + */ if(function_exists("google_seo_url_calendar_week"))
+/* + PL:google_seo + */ {
+/* + PL:google_seo + */     $link = google_seo_url_calendar_week($calendar, $week);
+/* + PL:google_seo + */ 
+/* + PL:google_seo + */     if($link)
+/* + PL:google_seo + */     {
+/* + PL:google_seo + */         return $link;
+/* + PL:google_seo + */     }
+/* + PL:google_seo + */ }
 	if($week < 0)
 	{
 		$week = str_replace('-', "n", $week);

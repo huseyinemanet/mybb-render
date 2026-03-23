@@ -28,6 +28,7 @@ class PlannedTopic:
     canonical_intent: str
     priority: int
     safe_tier: str
+    series: str | None = None
 
 
 # Game name substring -> default popular-forum slug (MVP routing)
@@ -96,6 +97,34 @@ def _template_subject_and_intent(
             "Düşük sistem için oyun önerileri — ek liste",
             "düşük donanım için tek oyunculu oyun önerileri",
         ),
+        "beginner_guide": (
+            f"{game} başlangıç rehberi — giriş",
+            f"{game} yeni oyuncu için başlangıç ve ilk saatler rehberi giriş",
+        ),
+        "build_guide_stub": (
+            f"{game} build ve karakter gelişimi — giriş",
+            f"{game} build önerileri ve gelişim çerçevesi giriş",
+        ),
+        "mod_install_stub": (
+            f"{game} mod kurulumu — güvenli giriş",
+            f"{game} tek oyunculu mod kurulumu ve yedekleme çerçevesi",
+        ),
+        "walkthrough_stub": (
+            f"{game} walkthrough ve ilerleme — giriş",
+            f"{game} ana hikâye ilerlemesi walkthrough giriş",
+        ),
+        "item_location_stub": (
+            f"{game} önemli eşya ve konumlar — giriş",
+            f"{game} eşya ve koleksiyon konumları rehberi giriş",
+        ),
+        "list_series_order": (
+            f"{game} oyunları oynama sırası — özet liste",
+            f"{game} serisi tek oyunculu oyun sırası önerisi",
+        ),
+        "config_guide_stub": (
+            f"{game} ayar ve config rehberi — giriş",
+            f"{game} grafik ve kontrol ayarları çerçevesi",
+        ),
     }
     if template_key in patterns:
         return patterns[template_key]
@@ -132,6 +161,7 @@ def plan_topics(
                 canonical_intent=canonical_intent,
                 priority=c.priority,
                 safe_tier=safe_tier,
+                series=c.series,
             )
         )
 

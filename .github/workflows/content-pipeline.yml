@@ -3,10 +3,8 @@ name: Content pipeline
 on:
   workflow_dispatch:
   schedule:
-    # ~06:00, ~13:00, ~20:00 Turkey (UTC+3)
-    - cron: "0 3 * * *"
-    - cron: "0 10 * * *"
-    - cron: "0 17 * * *"
+    # Her gün 12:00 Türkiye saati (TRT = UTC+3) → 09:00 UTC
+    - cron: "0 9 * * *"
 
 concurrency:
   group: mybb-content-pipeline
